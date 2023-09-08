@@ -21,33 +21,37 @@
     <header class="primary-header">
       <div class="container-fluid header-slider" data-slide="first">
         <div class="nav-wrapper">
-          <a href="#" aria-label="home">
-            <picture>
-              <source srcset="assets/img/logo.svg" />
-              <img src="assets/img/logo.svg" alt="home" height="60" />
-            </picture>
-          </a>
-
-          <button
-            class="movile-nav-toggle"
-            aria-controls="primary-navigation"
-            aria-expanded="false"
-          >
-            <span class="visually-hidden">Menu</span>
-          </button>
-
-          <nav class="primary-navigation" id="primary-navigation">
-            <ul class="nav-list" role="list" aria-label="Primary">
-              <li><a href="#">Home</a></li>
-              <li><a href="#">About</a></li>
-              <li><a href="#">Carrers</a></li>
-              <li><a href="#">Pricing</a></li>
-            </ul>
-          </nav>
+          <div>
+            <a href="#" aria-label="home">
+              <picture>
+                <source srcset="assets/img/logo.svg" />
+                <img src="assets/img/logo.svg" alt="home" height="60" />
+              </picture>
+            </a>
+            <button
+              class="mobile-nav-toggle"
+              aria-controls="primary-navigation"
+              aria-expanded="false"
+            >
+              <span class="visually-hidden">Menu</span>
+            </button>
+            <nav class="primary-navigation" id="primary-navigation">
+              <ul class="nav-list" role="list" aria-label="Primary">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Carrers</a></li>
+                <li><a href="#">Pricing</a></li>
+              </ul>
+            </nav>
+          </div>
         </div>
         <div class="slider__content">
           <p class="title">European Food Safety 2023</p>
-          <button class="btn-primary | btn-flex">
+          <p class="desc sm-none">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugiat
+            consectetur, tenetur eaque dolores totam facere?
+          </p>
+          <button class="btn-primary | btn-heading btn-flex">
             See more
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -67,7 +71,7 @@
     </header>
     <main>
       <section class="sponsors">
-        <div class="container-fluid">
+        <div class="container-fluid | justify-cnt-center">
           <ul class="slider | d-inline-flex">
             <li>
               <img src="assets/img/sponsor/1.jpg" alt="first sponsor" />
@@ -83,240 +87,207 @@
       <section class="news">
         <div class="container">
           <h2 class="fs-primary-heading fw-bold">News and Events</h2>
-          <button class="btn-arrow previous">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="14"
-              height="11"
-              viewBox="0 0 14 11"
-              fill="none"
-            >
-              <path
-                d="M4.9 0.793091L5.887 1.81512L2.681 5.14214H14V6.59182H2.681L5.894 9.91885L4.9 10.9409L0 5.86698L4.9 0.793091Z"
-                fill="white"
-              />
-            </svg>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button class="btn-arrow previous">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="14"
-              height="11"
-              viewBox="0 0 14 11"
-              fill="none"
-            >
-              <path
-                d="M9.1 0.793091L8.113 1.81512L11.319 5.14214H0V6.59182H11.319L8.106 9.91885L9.1 10.9409L14 5.86698L9.1 0.793091Z"
-                fill="white"
-              />
-            </svg>
-            <span class="visually-hidden">Next</span>
-          </button>
+          <div class="news__nav">
+            <button class="btn-arrow previous">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="14"
+                height="11"
+                viewBox="0 0 14 11"
+                fill="none"
+              >
+                <path
+                  d="M4.9 0.793091L5.887 1.81512L2.681 5.14214H14V6.59182H2.681L5.894 9.91885L4.9 10.9409L0 5.86698L4.9 0.793091Z"
+                  fill="white"
+                />
+              </svg>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="btn-arrow previous">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="14"
+                height="11"
+                viewBox="0 0 14 11"
+                fill="none"
+              >
+                <path
+                  d="M9.1 0.793091L8.113 1.81512L11.319 5.14214H0V6.59182H11.319L8.106 9.91885L9.1 10.9409L14 5.86698L9.1 0.793091Z"
+                  fill="white"
+                />
+              </svg>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+          <ul role="list" class="news__section | even-columns">
+            <li class="box-square">
+              <h2 class="news__title">
+                New Insights and Discoveries: Advancing Animal Health and
+                Welfare
+              </h2>
+              <p class="news__desc">
+                Uncover the latest breakthroughs in animal research that are
+                shaping the future of animal health and well-being.
+              </p>
+              <div class="news__more-info">
+                <a href="/learn-more" class="news__link">Learn more</a>
+                <span class="date">22.06.2023</span>
+              </div>
+            </li>
+
+            <li class="box-rectangle | news-bg-img" data-news-img="first">
+              <h2 class="news__title">
+                Collaborative Research Initiatives Driving Global One Health
+                Efforts
+              </h2>
+              <p class="news__desc">
+                Discover the power of cooperation and interdisciplinary research
+                as leading experts and institutions worldwide unite to tackle
+                the complex challenges at the intersection of human, animal, and
+                environmental health. This section highlights the impactful
+                projects and initiatives that are fostering a holistic approach
+                to disease prevention, control, and surveillance. From zoonotic
+                disease studies to ecosystem monitoring, explore how these
+                collaborative efforts are shaping policies and driving progress
+                towards a healthier and more sustainable future for all living
+                beings. Experience the transformative potential of international
+                partnerships and knowledge-sharing...
+              </p>
+              <div class="news__more-info">
+                <a href="/learn-more" class="news__link">Learn more</a>
+                <span class="date">22.06.2023</span>
+              </div>
+            </li>
+
+            <li class="box-square">
+              <h2 class="news__title">
+                Frontline Innovations in Disease Control and Prevention
+              </h2>
+              <p class="news__desc">
+                Stay updated on the cutting-edge approaches and technologies
+                employed to combat and prevent infectious diseases in animals
+              </p>
+              <div class="news__more-info">
+                <a href="/learn-more" class="news__link">Learn more</a>
+                <span class="date">22.06.2023</span>
+              </div>
+            </li>
+          </ul>
         </div>
-
-        <ul class="news__section | even-columns">
-          <li class="box-square">
-            <h2 class="news__title">
-              New Insights and Discoveries: Advancing Animal Health and Welfare
-            </h2>
-            <p class="news__desc">
-              Uncover the latest breakthroughs in animal research that are
-              shaping the future of animal health and well-being.
-            </p>
-            <div class="news__more-info">
-              <a href="/learn-more" class="news__link">Learn more</a>
-              <span class="date">22.06.2023</span>
-            </div>
-          </li>
-
-          <li class="box-rectangle | news-bg-img" data-news-img="first">
-            <h2 class="news__title">
-              Collaborative Research Initiatives Driving Global One Health
-              Efforts
-            </h2>
-            <p class="news__desc">
-              Discover the power of cooperation and interdisciplinary research
-              as leading experts and institutions worldwide unite to tackle the
-              complex challenges at the intersection of human, animal, and
-              environmental health. This section highlights the impactful
-              projects and initiatives that are fostering a holistic approach to
-              disease prevention, control, and surveillance. From zoonotic
-              disease studies to ecosystem monitoring, explore how these
-              collaborative efforts are shaping policies and driving progress
-              towards a healthier and more sustainable future for all living
-              beings. Experience the transformative potential of international
-              partnerships and knowledge-sharing...
-            </p>
-            <div class="news__more-info">
-              <a href="/learn-more" class="news__link">Learn more</a>
-              <span class="date">22.06.2023</span>
-            </div>
-          </li>
-
-          <li class="box-square">
-            <h2 class="news__title">
-              Frontline Innovations in Disease Control and Prevention
-            </h2>
-            <p class="news__desc">
-              Stay updated on the cutting-edge approaches and technologies
-              employed to combat and prevent infectious diseases in animals
-            </p>
-            <div class="news__more-info">
-              <a href="/learn-more" class="news__link">Learn more</a>
-              <span class="date">22.06.2023</span>
-            </div>
-          </li>
-        </ul>
       </section>
 
-      <section class="offer-box">
-        <div class="container-fluid">
+      <section class="offer-box | revert-bg p-bl-5">
+        <div class="container">
           <h1 class="fs-primary-heading fw-bold">Our offer</h1>
           <p class="offer__subtitle">
             Our services include service testing, proficiency testing for
             individual clients and much more.
           </p>
           <div class="columns">
-            <ul class="offer__items">
+            <ul role="list" class="offer__items">
               <li class="item">
-                <h2 class="fs-secondary-heading fw-bold">Service Research</h2>
-                <a href="#" class="btn-secondary">See more</a>
-                <p class="desc">
-                  We pride ourselves on our attention to detail and commitment
-                  to providing exceptional customer service.
-                </p>
+                <div class="wrapper">
+                  <h2 class="fs-secondary-heading fw-bold">Service Research</h2>
+                  <a href="#" class="btn-secondary">See more</a>
+                  <p class="desc">
+                    We pride ourselves on our attention to detail and commitment
+                    to providing exceptional customer service.
+                  </p>
+                </div>
                 <div class="item-icon">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="85"
-                    height="85"
-                    viewBox="0 0 85 85"
-                    fill="none"
-                  >
-                    <path
-                      d="M24.7917 69.0625C20.8958 69.0625 17.7083 72.25 17.7083 76.1458H67.2917C67.2917 72.25 64.1042 69.0625 60.2083 69.0625H46.0417V61.9792H56.6667C60.5625 61.9792 63.75 58.7917 63.75 54.8958H35.4167C29.5375 54.8958 24.7917 50.15 24.7917 44.2708C24.7917 40.4104 26.8813 37.0458 29.9979 35.1687C31.45 37.2583 33.7521 38.7104 36.4792 38.9229C38.9583 39.1354 41.2958 38.25 43.0313 36.7271L45.1208 42.4292L48.45 41.225L49.6542 44.5542L56.3125 42.1458L55.1083 38.8167L58.4375 37.6125L48.7333 10.9792L45.4042 12.1833L44.2 8.85416L37.5417 11.2625L38.7458 14.5917L35.4167 15.8312L37.4 21.3208C33.2563 21.1792 29.6438 23.9771 28.6167 27.9083C22.2063 30.6 17.7083 36.9042 17.7083 44.2708C17.7083 54.0458 25.6417 61.9792 35.4167 61.9792V69.0625H24.7917ZM45.5458 17.7792L51.6021 34.425L48.2729 35.6292L42.2167 18.9833L45.5458 17.7792ZM37.1875 26.5625C39.1354 26.5625 40.7292 28.1562 40.7292 30.1042C40.7292 32.0521 39.1354 33.6458 37.1875 33.6458C35.2396 33.6458 33.6458 32.0521 33.6458 30.1042C33.6458 28.1562 35.2396 26.5625 37.1875 26.5625Z"
-                      fill="#0CA6A6"
-                      fill-opacity="0.25"
-                    />
+                  <svg class="icon">
+                    <use
+                      xlink:href="assets/img/offer-icons/biotech2.svg#biotech"
+                    ></use>
                   </svg>
                 </div>
               </li>
               <li class="item">
-                <h2 class="fs-secondary-heading fw-bold">
-                  Proficiency Research
-                </h2>
-                <a href="#" class="btn-secondary">See more</a>
-                <p class="desc">
-                  We pride ourselves on our attention to detail and commitment
-                  to providing exceptional customer service.
-                </p>
+                <div class="wrapper">
+                  <h2 class="fs-secondary-heading fw-bold">
+                    Proficiency Research
+                  </h2>
+                  <a href="#" class="btn-secondary">See more</a>
+                  <p class="desc">
+                    We pride ourselves on our attention to detail and commitment
+                    to providing exceptional customer service.
+                  </p>
+                </div>
                 <div class="item-icon">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="82"
-                    height="82"
-                    viewBox="0 0 82 82"
-                    fill="none"
-                  >
-                    <path
-                      d="M50.3 73C49.4217 73 48.6854 72.7029 48.0913 72.1087C47.4971 71.5146 47.2 70.7783 47.2 69.9V66.5675C46.0117 66.3608 44.8879 66.0638 43.8288 65.6763C42.7696 65.2887 41.775 64.7592 40.845 64.0875L37.745 67.1875C37.125 67.7558 36.3888 68.0529 35.5363 68.0788C34.6838 68.1046 33.9475 67.8075 33.3275 67.1875C32.7075 66.5675 32.3975 65.8312 32.3975 64.9788C32.3975 64.1263 32.7075 63.39 33.3275 62.77L36.505 59.5925C36.35 59.3342 36.195 59.0629 36.04 58.7788C35.885 58.4946 35.73 58.2233 35.575 57.965L33.4825 53.8575L29.685 57.655C29.065 58.2233 28.3417 58.5204 27.515 58.5462C26.6883 58.5721 25.965 58.275 25.345 57.655C24.725 57.035 24.415 56.3117 24.415 55.485C24.415 54.6583 24.725 53.935 25.345 53.315L29.1425 49.44L25.035 47.425C24.7767 47.3217 24.5442 47.2054 24.3375 47.0763C24.1308 46.9471 23.8983 46.805 23.64 46.65L20.85 49.44C20.23 50.0083 19.4937 50.3054 18.6412 50.3312C17.7888 50.3571 17.0525 50.06 16.4325 49.44C15.8125 48.82 15.5025 48.0967 15.5025 47.27C15.5025 46.4433 15.8125 45.72 16.4325 45.1L19.145 42.3875C18.4217 41.4058 17.8404 40.3596 17.4012 39.2488C16.9621 38.1379 16.6392 36.9883 16.4325 35.8H13.1C12.2217 35.8 11.4854 35.5029 10.8913 34.9088C10.2971 34.3146 10 33.5783 10 32.7C10 31.8217 10.2971 31.0854 10.8913 30.4913C11.4854 29.8971 12.2217 29.6 13.1 29.6H16.5875C16.8458 28.6183 17.1558 27.6883 17.5175 26.81C17.8792 25.9317 18.3442 25.0792 18.9125 24.2525L16.2 21.54C15.58 20.92 15.27 20.1967 15.27 19.37C15.27 18.5433 15.58 17.82 16.2 17.2C16.82 16.58 17.5433 16.27 18.37 16.27C19.1967 16.27 19.92 16.58 20.54 17.2L23.2525 19.9125C24.0792 19.3442 24.9317 18.8792 25.81 18.5175C26.6883 18.1558 27.6183 17.8458 28.6 17.5875V14.1C28.6 13.2217 28.8971 12.4854 29.4913 11.8913C30.0854 11.2971 30.8217 11 31.7 11C32.5783 11 33.3146 11.2971 33.9088 11.8913C34.5029 12.4854 34.8 13.2217 34.8 14.1V17.4325C36.04 17.6392 37.2154 17.975 38.3263 18.44C39.4371 18.905 40.4833 19.4992 41.465 20.2225L44.1775 17.51C44.7975 16.89 45.5337 16.58 46.3862 16.58C47.2388 16.58 47.975 16.89 48.595 17.51C49.215 18.13 49.525 18.8533 49.525 19.68C49.525 20.5067 49.215 21.23 48.595 21.85L45.7275 24.7175C45.8308 24.9242 45.9471 25.1308 46.0763 25.3375C46.2054 25.5442 46.3217 25.7767 46.425 26.035L48.3625 29.91L51.9275 26.345C52.5475 25.725 53.2837 25.415 54.1362 25.415C54.9888 25.415 55.725 25.725 56.345 26.345C56.965 26.965 57.275 27.7013 57.275 28.5538C57.275 29.4062 56.965 30.1425 56.345 30.7625L52.625 34.405L56.965 36.575C57.275 36.73 57.5979 36.8979 57.9338 37.0788C58.2696 37.2596 58.5667 37.4533 58.825 37.66L61.925 34.56C62.545 33.94 63.2683 33.63 64.095 33.63C64.9217 33.63 65.645 33.94 66.265 34.56C66.885 35.18 67.195 35.9163 67.195 36.7688C67.195 37.6213 66.885 38.3575 66.265 38.9775L63.165 42C63.785 42.93 64.2887 43.9117 64.6763 44.945C65.0638 45.9783 65.3608 47.0633 65.5675 48.2H68.9C69.7783 48.2 70.5146 48.4971 71.1087 49.0913C71.7029 49.6854 72 50.4217 72 51.3C72 52.1783 71.7029 52.9146 71.1087 53.5088C70.5146 54.1029 69.7783 54.4 68.9 54.4H65.4125C65.1542 55.3817 64.8442 56.2988 64.4825 57.1512C64.1208 58.0037 63.6558 58.8433 63.0875 59.67L65.7225 62.305C66.3425 62.925 66.6525 63.6613 66.6525 64.5138C66.6525 65.3662 66.3425 66.1025 65.7225 66.7225C65.1025 67.2908 64.3662 67.5879 63.5138 67.6138C62.6613 67.6396 61.925 67.3425 61.305 66.7225L58.7475 64.0875C57.9208 64.6558 57.0683 65.1208 56.19 65.4825C55.3117 65.8442 54.3817 66.1542 53.4 66.4125V69.9C53.4 70.7783 53.1029 71.5146 52.5088 72.1087C51.9146 72.7029 51.1783 73 50.3 73ZM49.835 60.6C52.8317 60.6 55.2988 59.4633 57.2363 57.19C59.1738 54.9167 59.91 52.2817 59.445 49.285C59.1867 47.735 58.6054 46.34 57.7013 45.1C56.7971 43.86 55.6217 42.8783 54.175 42.155L49.06 39.52C47.8717 38.9 46.7996 38.1121 45.8438 37.1562C44.8879 36.2004 44.1 35.1283 43.48 33.94L40.845 28.825C40.0183 27.1717 38.83 25.8542 37.28 24.8725C35.73 23.8908 34.025 23.4 32.165 23.4C29.1683 23.4 26.7013 24.5367 24.7638 26.81C22.8263 29.0833 22.09 31.7183 22.555 34.715C22.8133 36.265 23.3946 37.66 24.2987 38.9C25.2029 40.14 26.3783 41.1217 27.825 41.845L32.94 44.48C34.1283 45.1 35.2004 45.8879 36.1562 46.8438C37.1121 47.7996 37.9 48.8717 38.52 50.06L41.155 55.175C41.9817 56.8283 43.17 58.1458 44.72 59.1275C46.27 60.1092 47.975 60.6 49.835 60.6ZM33.25 37.35C34.5417 37.35 35.6396 36.8979 36.5438 35.9937C37.4479 35.0896 37.9 33.9917 37.9 32.7C37.9 31.4083 37.4479 30.3104 36.5438 29.4062C35.6396 28.5021 34.5417 28.05 33.25 28.05C31.9583 28.05 30.8604 28.5021 29.9562 29.4062C29.0521 30.3104 28.6 31.4083 28.6 32.7C28.6 33.9917 29.0521 35.0896 29.9562 35.9937C30.8604 36.8979 31.9583 37.35 33.25 37.35ZM48.75 56.725C49.835 56.725 50.7521 56.3504 51.5013 55.6012C52.2504 54.8521 52.625 53.935 52.625 52.85C52.625 51.765 52.2504 50.8479 51.5013 50.0988C50.7521 49.3496 49.835 48.975 48.75 48.975C47.665 48.975 46.7479 49.3496 45.9987 50.0988C45.2496 50.8479 44.875 51.765 44.875 52.85C44.875 53.935 45.2496 54.8521 45.9987 55.6012C46.7479 56.3504 47.665 56.725 48.75 56.725Z"
-                      fill="#0CA6A6"
-                      fill-opacity="0.25"
-                    />
+                  <svg class="icon">
+                    <use
+                      xlink:href="assets/img/offer-icons/microbiology.svg#microbiology"
+                    ></use>
                   </svg>
                 </div>
               </li>
               <li class="item">
-                <h2 class="fs-secondary-heading fw-bold">KSZW</h2>
-                <a href="#" class="btn-secondary">See more</a>
-                <p class="desc">
-                  We pride ourselves on our attention to detail and commitment
-                  to providing exceptional customer service.
-                </p>
+                <div class="wrapper">
+                  <h2 class="fs-secondary-heading fw-bold">KSZW</h2>
+                  <a href="#" class="btn-secondary">See more</a>
+                  <p class="desc">
+                    We pride ourselves on our attention to detail and commitment
+                    to providing exceptional customer service.
+                  </p>
+                </div>
                 <div class="item-icon">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="67"
-                    height="67"
-                    viewBox="0 0 67 67"
-                    fill="none"
-                  >
-                    <path
-                      d="M22.3333 62.4166C18.4715 62.4166 15.1797 61.0557 12.4578 58.3338C9.73593 55.612 8.37499 52.3201 8.37499 48.4583V23.3333C6.83957 23.3333 5.52516 22.7866 4.43176 21.6932C3.33836 20.5998 2.79166 19.2854 2.79166 17.75V12.1666C2.79166 10.6312 3.33836 9.31682 4.43176 8.22342C5.52516 7.13001 6.83957 6.58331 8.37499 6.58331H36.2917C37.8271 6.58331 39.1415 7.13001 40.2349 8.22342C41.3283 9.31682 41.875 10.6312 41.875 12.1666V17.75C41.875 19.2854 41.3283 20.5998 40.2349 21.6932C39.1415 22.7866 37.8271 23.3333 36.2917 23.3333V31.7781C34.3375 33.0344 32.6741 34.6047 31.3016 36.489C29.929 38.3734 28.9635 40.5021 28.4052 42.875H22.3333V37.2916H30.7083V34.5H22.3333V28.9166H30.7083V23.3333H13.9583V48.4583C13.9583 50.7847 14.7726 52.7621 16.401 54.3906C18.0295 56.0191 20.0069 56.8333 22.3333 56.8333C23.7292 56.8333 25.0087 56.5309 26.1719 55.926C27.3351 55.3212 28.3121 54.4837 29.1031 53.4135C29.4753 54.3441 29.8941 55.2281 30.3594 56.0656C30.8246 56.9031 31.383 57.7173 32.0344 58.5083C30.7781 59.718 29.3241 60.6719 27.6724 61.3698C26.0206 62.0677 24.241 62.4166 22.3333 62.4166ZM22.3333 51.25V45.6666H27.9864C27.8934 46.5972 27.8818 47.5278 27.9516 48.4583C28.0213 49.3889 28.1726 50.3194 28.4052 51.25H22.3333ZM8.37499 17.75H36.2917V12.1666H8.37499V17.75ZM46.0625 54.0416C48.0167 54.0416 49.6684 53.367 51.0177 52.0177C52.367 50.6684 53.0417 49.0166 53.0417 47.0625C53.0417 45.1083 52.367 43.4566 51.0177 42.1073C49.6684 40.758 48.0167 40.0833 46.0625 40.0833C44.1083 40.0833 42.4566 40.758 41.1073 42.1073C39.758 43.4566 39.0833 45.1083 39.0833 47.0625C39.0833 49.0166 39.758 50.6684 41.1073 52.0177C42.4566 53.367 44.1083 54.0416 46.0625 54.0416ZM60.3 65.2083L52.7625 57.6708C51.7389 58.3222 50.6687 58.8107 49.5521 59.1364C48.4354 59.4621 47.2722 59.625 46.0625 59.625C42.5729 59.625 39.6068 58.4036 37.1641 55.9609C34.7213 53.5182 33.5 50.5521 33.5 47.0625C33.5 43.5729 34.7213 40.6068 37.1641 38.164C39.6068 35.7213 42.5729 34.5 46.0625 34.5C49.5521 34.5 52.5182 35.7213 54.9609 38.164C57.4036 40.6068 58.625 43.5729 58.625 47.0625C58.625 48.2722 58.4621 49.4354 58.1364 50.5521C57.8108 51.6687 57.3222 52.7389 56.6708 53.7625L64.2083 61.3L60.3 65.2083Z"
-                      fill="#0CA6A6"
-                      fill-opacity="0.25"
-                    />
+                  <svg class="icon">
+                    <use
+                      xlink:href="assets/img/offer-icons/lab_research.svg#lab_research"
+                    ></use>
                   </svg>
                 </div>
               </li>
 
               <li class="item">
-                <h2 class="fs-secondary-heading fw-bold">Doctoral Studies</h2>
-                <a href="#" class="btn-secondary">See more</a>
-                <p class="desc">
-                  We pride ourselves on our attention to detail and commitment
-                  to providing exceptional customer service.
-                </p>
+                <div class="wrapper">
+                  <h2 class="fs-secondary-heading fw-bold">Doctoral Studies</h2>
+                  <a href="#" class="btn-secondary">See more</a>
+                  <p class="desc">
+                    We pride ourselves on our attention to detail and commitment
+                    to providing exceptional customer service.
+                  </p>
+                </div>
                 <div class="item-icon">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="67"
-                    height="67"
-                    viewBox="0 0 67 67"
-                    fill="none"
-                  >
-                    <path
-                      d="M33 5L-3.66666 25L9.66668 32.2667V52.2667L33 65L56.3333 52.2667V32.2667L63 28.6333V51.6667H69.6667V25L33 5ZM55.7333 25L33 37.4L10.2667 25L33 12.6L55.7333 25ZM49.6667 48.3L33 57.4L16.3333 48.3V35.9L33 45L49.6667 35.9V48.3Z"
-                      fill="#0CA6A6"
-                    />
+                  <svg class="icon">
+                    <use
+                      xlink:href="assets/img/offer-icons/school2.svg#school"
+                    ></use>
                   </svg>
                 </div>
               </li>
               <li class="item">
-                <h2 class="fs-secondary-heading fw-bold">Conferences</h2>
-                <a href="#" class="btn-secondary">See more</a>
-                <p class="desc">
-                  We pride ourselves on our attention to detail and commitment
-                  to providing exceptional customer service.
-                </p>
+                <div class="wrapper">
+                  <h2 class="fs-secondary-heading fw-bold">Conferences</h2>
+                  <a href="#" class="btn-secondary">See more</a>
+                  <p class="desc">
+                    We pride ourselves on our attention to detail and commitment
+                    to providing exceptional customer service.
+                  </p>
+                </div>
                 <div class="item-icon">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="67"
-                    height="67"
-                    viewBox="0 0 67 67"
-                    fill="none"
-                  >
-                    <path
-                      d="M22.3333 62.4166C18.4715 62.4166 15.1797 61.0557 12.4578 58.3338C9.73593 55.612 8.37499 52.3201 8.37499 48.4583V23.3333C6.83957 23.3333 5.52516 22.7866 4.43176 21.6932C3.33836 20.5998 2.79166 19.2854 2.79166 17.75V12.1666C2.79166 10.6312 3.33836 9.31682 4.43176 8.22342C5.52516 7.13001 6.83957 6.58331 8.37499 6.58331H36.2917C37.8271 6.58331 39.1415 7.13001 40.2349 8.22342C41.3283 9.31682 41.875 10.6312 41.875 12.1666V17.75C41.875 19.2854 41.3283 20.5998 40.2349 21.6932C39.1415 22.7866 37.8271 23.3333 36.2917 23.3333V31.7781C34.3375 33.0344 32.6741 34.6047 31.3016 36.489C29.929 38.3734 28.9635 40.5021 28.4052 42.875H22.3333V37.2916H30.7083V34.5H22.3333V28.9166H30.7083V23.3333H13.9583V48.4583C13.9583 50.7847 14.7726 52.7621 16.401 54.3906C18.0295 56.0191 20.0069 56.8333 22.3333 56.8333C23.7292 56.8333 25.0087 56.5309 26.1719 55.926C27.3351 55.3212 28.3121 54.4837 29.1031 53.4135C29.4753 54.3441 29.8941 55.2281 30.3594 56.0656C30.8246 56.9031 31.383 57.7173 32.0344 58.5083C30.7781 59.718 29.3241 60.6719 27.6724 61.3698C26.0206 62.0677 24.241 62.4166 22.3333 62.4166ZM22.3333 51.25V45.6666H27.9864C27.8934 46.5972 27.8818 47.5278 27.9516 48.4583C28.0213 49.3889 28.1726 50.3194 28.4052 51.25H22.3333ZM8.37499 17.75H36.2917V12.1666H8.37499V17.75ZM46.0625 54.0416C48.0167 54.0416 49.6684 53.367 51.0177 52.0177C52.367 50.6684 53.0417 49.0166 53.0417 47.0625C53.0417 45.1083 52.367 43.4566 51.0177 42.1073C49.6684 40.758 48.0167 40.0833 46.0625 40.0833C44.1083 40.0833 42.4566 40.758 41.1073 42.1073C39.758 43.4566 39.0833 45.1083 39.0833 47.0625C39.0833 49.0166 39.758 50.6684 41.1073 52.0177C42.4566 53.367 44.1083 54.0416 46.0625 54.0416ZM60.3 65.2083L52.7625 57.6708C51.7389 58.3222 50.6687 58.8107 49.5521 59.1364C48.4354 59.4621 47.2722 59.625 46.0625 59.625C42.5729 59.625 39.6068 58.4036 37.1641 55.9609C34.7213 53.5182 33.5 50.5521 33.5 47.0625C33.5 43.5729 34.7213 40.6068 37.1641 38.164C39.6068 35.7213 42.5729 34.5 46.0625 34.5C49.5521 34.5 52.5182 35.7213 54.9609 38.164C57.4036 40.6068 58.625 43.5729 58.625 47.0625C58.625 48.2722 58.4621 49.4354 58.1364 50.5521C57.8108 51.6687 57.3222 52.7389 56.6708 53.7625L64.2083 61.3L60.3 65.2083Z"
-                      fill="#0CA6A6"
-                      fill-opacity="0.25"
-                    />
+                  <svg class="icon">
+                    <use
+                      xlink:href="assets/img/offer-icons/forum.svg#forum"
+                    ></use>
                   </svg>
                 </div>
               </li>
 
               <li class="item">
-                <h2 class="fs-secondary-heading fw-bold">Decontamination</h2>
-                <a href="#" class="btn-secondary">See more</a>
-                <p class="desc">
-                  We pride ourselves on our attention to detail and commitment
-                  to providing exceptional customer service.
-                </p>
+                <div class="wrapper">
+                  <h2 class="fs-secondary-heading fw-bold">Decontamination</h2>
+                  <a href="#" class="btn-secondary">See more</a>
+                  <p class="desc">
+                    We pride ourselves on our attention to detail and commitment
+                    to providing exceptional customer service.
+                  </p>
+                </div>
                 <div class="item-icon">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="67"
-                    height="67"
-                    viewBox="0 0 67 67"
-                    fill="none"
-                  >
-                    <path
-                      d="M49.555 12.4583L51.34 16.34L55.2217 18.125L51.34 19.91L49.555 23.7916L47.77 19.91L43.8883 18.125L47.77 16.34L49.555 12.4583ZM58.0833 37.9583C61.2 37.9583 63.75 35.4083 63.75 32.2916C63.75 29.175 58.0833 20.9583 58.0833 20.9583C58.0833 20.9583 52.4167 29.175 52.4167 32.2916C52.4167 35.4083 54.9667 37.9583 58.0833 37.9583ZM32.5833 15.575V9.62498H38.25C39.865 9.62498 41.3667 10.1066 42.6417 10.9L46.6933 6.84831C44.3417 5.06331 41.4517 3.95831 38.25 3.95831C34.085 3.95831 22.8367 3.95831 22.6667 3.95831V9.62498H26.9167V15.6033C21.8733 16.6516 17.85 20.3633 16.2917 25.2083H22.4117C23.9133 22.6866 26.605 20.9583 29.75 20.9583C34.34 20.9583 38.08 24.6133 38.2217 29.175L43.9167 31.3V29.4583C43.9167 22.6016 39.0433 16.8783 32.5833 15.575ZM63.75 52.125V54.9583L41.0833 62.0416L21.25 56.545V60.625H4.25V29.4583H26.8317L44.285 35.975C47.4583 37.165 49.5833 40.225 49.5833 43.625H55.25C59.9533 43.625 63.75 47.4216 63.75 52.125ZM15.5833 54.9583V35.125H9.91667V54.9583H15.5833ZM57.8 50.9066C57.3467 49.9716 56.355 49.32 55.25 49.32H40.0917C38.5617 49.32 37.06 49.065 35.615 48.5833L28.8717 46.345L30.6567 40.9617L37.4 43.2C38.2783 43.4833 43.9167 43.625 43.9167 43.625C43.9167 42.5766 43.265 41.6416 42.3017 41.2733L25.8117 35.125H21.25V50.6516L40.9983 56.12L57.8 50.9066Z"
-                      fill="#0CA6A6"
-                      fill-opacity="0.25"
-                    />
+                  <svg class="icon">
+                    <use
+                      xlink:href="assets/img/offer-icons/clean_hands.svg#clean_hands"
+                    ></use>
                   </svg>
                 </div>
               </li>
@@ -326,25 +297,27 @@
       </section>
 
       <section class="cta">
-        <div class="section-nav | container">
-          <button class="btn-primary">Announcements</button>
-          <button class="btn-primary">WCKP</button>
-          <button class="btn-primary">Orders</button>
-        </div>
-        <div class="cta__content">
-          <h2 class="fs-secondary-heading fw-bold">WCKP</h2>
-          <ul class="tab-info">
-            <li><button class="btn-accent">About Us</button></li>
-            <li><button class="btn-accent">Pricing</button></li>
-            <li><button class="btn-accent">Contact</button></li>
-          </ul>
-          <p class="cta__desc">
-            Postgraduate education in Puławy has existed practically since the
-            establishment of the institute. Initially, trainings for
-            veterinarians were held sporadically in the rooms of individual
-            research units.
-          </p>
-          <a href="#see-more" class="btn-primary">See more</a>
+        <div class="wrapper">
+          <div class="section-nav">
+            <button class="btn-primary">Announcements</button>
+            <button class="btn-primary">WCKP</button>
+            <button class="btn-primary">Orders</button>
+          </div>
+          <div class="cta__content">
+            <h2 class="fs-primary-heading fw-bold">WCKP</h2>
+            <ul class="tab-info">
+              <li><button class="btn-accent">About Us</button></li>
+              <li><button class="btn-accent">Pricing</button></li>
+              <li><button class="btn-accent">Contact</button></li>
+            </ul>
+            <p class="cta__desc">
+              Postgraduate education in Puławy has existed practically since the
+              establishment of the institute. Initially, trainings for
+              veterinarians were held sporadically in the rooms of individual
+              research units.
+            </p>
+            <a href="#see-more" class="btn-primary btn-heading">See more</a>
+          </div>
         </div>
       </section>
 
@@ -358,151 +331,204 @@
                 illum, voluptates nesciunt quis quos nam voluptate asperiores
                 perferendis sed animi enim id natus delectus hic.
               </p>
+              <br />
+              <p>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                Corporis, eligendi? Lorem ipsum dolor sit amet consectetur
+                adipisicing elit. Perspiciatis adipisci fugiat iusto laboriosam
+                assumenda officiis error dolores unde odio repellendus.
+              </p>
             </div>
-            <img src="assets/img/hero-image.svg" alt="scientist" />
+            <picture
+              ><img src="assets/img/hero-image.png" alt="scientist"
+            /></picture>
           </div>
         </div>
       </section>
 
       <section class="carousel">
-        <h1 class="fs-primary-heading fw-bold">Infomration Materials</h1>
-        <button class="btn-arrow previous">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="14"
-            height="11"
-            viewBox="0 0 14 11"
-            fill="none"
-          >
-            <path
-              d="M4.9 0.793091L5.887 1.81512L2.681 5.14214H14V6.59182H2.681L5.894 9.91885L4.9 10.9409L0 5.86698L4.9 0.793091Z"
-              fill="white"
-            />
-          </svg>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="btn-arrow next">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="14"
-            height="11"
-            viewBox="0 0 14 11"
-            fill="none"
-          >
-            <path
-              d="M9.1 0.793091L8.113 1.81512L11.319 5.14214H0V6.59182H11.319L8.106 9.91885L9.1 10.9409L14 5.86698L9.1 0.793091Z"
-              fill="white"
-            />
-          </svg>
-          <span class="visually-hidden">Next</span>
-        </button>
+        <div class="wrapper">
+          <h2 class="fs-primary-heading fw-bold">Information Materials</h2>
+          <div class="buttons-wrapper">
+            <button class="btn-arrow previous">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="14"
+                height="11"
+                viewBox="0 0 14 11"
+                fill="none"
+              >
+                <path
+                  d="M4.9 0.793091L5.887 1.81512L2.681 5.14214H14V6.59182H2.681L5.894 9.91885L4.9 10.9409L0 5.86698L4.9 0.793091Z"
+                  fill="white"
+                />
+              </svg>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="btn-arrow next">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="14"
+                height="11"
+                viewBox="0 0 14 11"
+                fill="none"
+              >
+                <path
+                  d="M9.1 0.793091L8.113 1.81512L11.319 5.14214H0V6.59182H11.319L8.106 9.91885L9.1 10.9409L14 5.86698L9.1 0.793091Z"
+                  fill="white"
+                />
+              </svg>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        </div>
 
         <div class="columns | d-inline-flex">
-          <ul class="column-items">
-            <li class="info-item-box">
-              <img src="assets/img/9.jpg" alt="" />
-              <div class="info__title">
-                <p>African Swine Fever</p>
-              </div>
-            </li>
+          <ul role="list" class="column-items">
+            <a href="#swine-fever">
+              <li class="info-item-box">
+                <div class="wrapper">
+                  <img src="assets/img/9.jpg" alt="" />
+                  <div class="info__title">
+                    <p>African Swine Fever</p>
+                  </div>
+                </div>
+              </li>
+            </a>
 
-            <li class="info-item-box">
-              <img src="assets/img/65a.jpg" alt="" />
-              <div class="info__title">
-                <p>Lyme disease</p>
-              </div>
-            </li>
+            <a href="#lyme-disease">
+              <li class="info-item-box">
+                <img src="assets/img/65a.jpg" alt="" />
+                <div class="info__title">
+                  <p>Lyme disease</p>
+                </div>
+              </li>
+            </a>
+
+            <a href="#lyme-disease">
+              <li class="info-item-box">
+                <img src="assets/img/65a.jpg" alt="" />
+                <div class="info__title">
+                  <p>Lyme disease</p>
+                </div>
+              </li>
+            </a>
           </ul>
 
-          <ul class="carousel-pagination">
-            <li class="item"></li>
-            <li class="item"></li>
-            <li class="item"></li>
+          <ul role="list" class="carousel-pagination">
+            <li><button class="item" data="active"></button></li>
+            <li><button class="item"></button></li>
+            <li><button class="item"></button></li>
           </ul>
         </div>
       </section>
     </main>
-    <footer>
+    <footer class="revert-bg">
       <div class="container-fluid">
         <p class="fs-primary-heading fw-bold">
           Let's talk
-          <span
-            ><svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="14"
-              height="10"
-              viewBox="0 0 14 10"
-              fill="none"
-            >
-              <path
-                d="M9.1 0L8.113 1.00714L11.319 4.28571H0V5.71429H11.319L8.106 8.99286L9.1 10L14 5L9.1 0Z"
-                fill="white"
-              /></svg
-          ></span>
+          <span>
+            <svg class="icon">
+              <use
+                xlink:href="assets/img/east_black_48dp.svg#east_black_48dp"
+              ></use>
+            </svg>
+          </span>
         </p>
-        <div class="even-columns">
-          <div class="header-footer__nav">
-            <nav class="footer-nav">
-              <ul role="list" aria-label="footer" style="--flow-spacer: 1em">
-                <li><a href="#">Company</a></li>
-                <li class="sub__nav">
-                  <ul class="list">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Services</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Contact</a></li>
-                  </ul>
-                </li>
+        <div class="header-footer__nav">
+          <nav class="footer-nav">
+            <ul role="list" aria-label="footer" style="--flow-spacer: 1em">
+              <li><a href="#">Company</a></li>
+              <li class="sub__nav">
+                <ul class="list">
+                  <li><a href="#">Home</a></li>
+                  <li><a href="#">Services</a></li>
+                  <li><a href="#">About</a></li>
+                  <li><a href="#">Contact</a></li>
+                </ul>
+              </li>
 
-                <li><a href="#">Services</a></li>
-                <li class="sub__nav">
-                  <ul class="list">
-                    <li><a href="#">Privayc Policy</a></li>
-                    <li><a href="#">Terms of use</a></li>
-                    <li><a href="#">Service Avalibility</a></li>
-                    <li><a href="#">Digital</a></li>
-                  </ul>
-                </li>
-              </ul>
-            </nav>
-          </div>
+              <li><a href="#">Services</a></li>
+              <li class="sub__nav">
+                <ul class="list">
+                  <li><a href="#">Privacy Policy</a></li>
+                  <li><a href="#">Terms of use</a></li>
+                  <li><a href="#">Service Avalibility</a></li>
+                  <li><a href="#">Digital</a></li>
+                </ul>
+              </li>
+            </ul>
+          </nav>
         </div>
+
         <p class="fs-primary-heading fw-bold">
           Our Socials
-          <span
-            ><svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="14"
-              height="10"
-              viewBox="0 0 14 10"
-              fill="none"
-            >
-              <path
-                d="M9.1 0L8.113 1.00714L11.319 4.28571H0V5.71429H11.319L8.106 8.99286L9.1 10L14 5L9.1 0Z"
-                fill="white"
-              /></svg
-          ></span>
+          <span>
+            <svg class="icon">
+              <use
+                xlink:href="assets/img/east_black_48dp.svg#east_black_48dp"
+              ></use>
+            </svg>
+          </span>
         </p>
-        <ul class="socials-nav">
-          <li class="social-item">
-            <a href="#" class="social-link">
-              <img src="assets/img/facebook.svg" alt="facebook logo" />
-              <span>facebook.com/bio-vi</span>
-            </a>
-          </li>
-          <li class="social-item">
-            <a href="" class="social-link">
-              <img src="assets/img/tiktok.svg" alt="facebook logo" />
-              <span>tiktok.com/@bio-vi</span>
-            </a>
-          </li>
-          <li class="social-item">
-            <a href="" class="social-link">
-              <img src="assets/img/instagram.svg" alt="facebook logo" />
-              <span>instagram.com/bio-vi</span>
-            </a>
-          </li>
-        </ul>
+        <div class="social-cols | flex-f-row">
+          <ul class="socials-nav">
+            <li class="social-item" data-type="social">
+              <a href="#" class="social-link">
+                <svg class="icon">
+                  <use xlink:href="assets/img/facebook.svg#facebook"></use>
+                </svg>
+                <span>facebook.com/bio-vi</span>
+              </a>
+            </li>
+            <li class="social-item" data-type="social">
+              <a href="" class="social-link">
+                <svg class="icon">
+                  <use xlink:href="assets/img/tiktok.svg#tiktok"></use>
+                </svg>
+                <span>tiktok.com/@bio-vi</span>
+              </a>
+            </li>
+            <li class="social-item" data-type="social">
+              <a href="" class="social-link">
+                <svg class="icon">
+                  <use xlink:href="assets/img/instagram.svg#instagram"></use>
+                </svg>
+                <span>instagram.com/bio-vi</span>
+              </a>
+            </li>
+          </ul>
+          <ul class="socials-nav">
+            <li class="social-item" data-type="contact">
+              <a href="" class="social-link">
+                <svg class="icon">
+                  <use
+                    xlink:href="assets/img/call_black_48dp.svg#call_black_48dp"
+                  ></use>
+                </svg>
+                <span>+48 713 550 912</span>
+              </a>
+            </li>
+            <li class="social-item" data-type="contact">
+              <a href="" class="social-link">
+                <svg class="icon">
+                  <use
+                    xlink:href="assets/img/call_black_48dp.svg#call_black_48dp"
+                  ></use>
+                </svg>
+                <span>+48 666 559 777</span>
+              </a>
+            </li>
+            <li class="social-item" data-type="contact">
+              <a href="mailto:bio-vi@gmail.com" class="social-link">
+                <svg class="icon">
+                  <use xlink:href="assets/img/email-ico.svg#email-ico"></use>
+                </svg>
+                <span>bio-vi@gmail.com</span>
+              </a>
+            </li>
+          </ul>
+        </div>
         <p class="primary-footer__copyright">Copyright &copy; 2023 Bio-Vi</p>
       </div>
     </footer>
