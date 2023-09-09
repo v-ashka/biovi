@@ -45,7 +45,7 @@
             </nav>
           </div>
         </div>
-        <div class="slider__content">
+        <div class="slider__content | container">
           <p class="title">European Food Safety 2023</p>
           <p class="desc sm-none">
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugiat
@@ -86,38 +86,40 @@
 
       <section class="news">
         <div class="container">
-          <h2 class="fs-primary-heading fw-bold">News and Events</h2>
-          <div class="news__nav">
-            <button class="btn-arrow previous">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="14"
-                height="11"
-                viewBox="0 0 14 11"
-                fill="none"
-              >
-                <path
-                  d="M4.9 0.793091L5.887 1.81512L2.681 5.14214H14V6.59182H2.681L5.894 9.91885L4.9 10.9409L0 5.86698L4.9 0.793091Z"
-                  fill="white"
-                />
-              </svg>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="btn-arrow previous">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="14"
-                height="11"
-                viewBox="0 0 14 11"
-                fill="none"
-              >
-                <path
-                  d="M9.1 0.793091L8.113 1.81512L11.319 5.14214H0V6.59182H11.319L8.106 9.91885L9.1 10.9409L14 5.86698L9.1 0.793091Z"
-                  fill="white"
-                />
-              </svg>
-              <span class="visually-hidden">Next</span>
-            </button>
+          <div class="news__wrapper">
+            <h2 class="fs-primary-heading fw-bold">News and Events</h2>
+            <div class="news__nav buttons-wrapper">
+              <button class="btn-arrow previous">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="14"
+                  height="11"
+                  viewBox="0 0 14 11"
+                  fill="none"
+                >
+                  <path
+                    d="M4.9 0.793091L5.887 1.81512L2.681 5.14214H14V6.59182H2.681L5.894 9.91885L4.9 10.9409L0 5.86698L4.9 0.793091Z"
+                    fill="white"
+                  />
+                </svg>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="btn-arrow previous">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="14"
+                  height="11"
+                  viewBox="0 0 14 11"
+                  fill="none"
+                >
+                  <path
+                    d="M9.1 0.793091L8.113 1.81512L11.319 5.14214H0V6.59182H11.319L8.106 9.91885L9.1 10.9409L14 5.86698L9.1 0.793091Z"
+                    fill="white"
+                  />
+                </svg>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
           </div>
           <ul role="list" class="news__section | even-columns">
             <li class="box-square">
@@ -186,8 +188,8 @@
           <div class="columns">
             <ul role="list" class="offer__items">
               <li class="item">
-                <div class="wrapper">
-                  <h2 class="fs-secondary-heading fw-bold">Service Research</h2>
+                <div class="offer__wrapper">
+                  <h2 class="fs-tertiary-heading fw-bold">Service Research</h2>
                   <a href="#" class="btn-secondary">See more</a>
                   <p class="desc">
                     We pride ourselves on our attention to detail and commitment
@@ -203,8 +205,8 @@
                 </div>
               </li>
               <li class="item">
-                <div class="wrapper">
-                  <h2 class="fs-secondary-heading fw-bold">
+                <div class="offer__wrapper">
+                  <h2 class="fs-tertiary-heading fw-bold">
                     Proficiency Research
                   </h2>
                   <a href="#" class="btn-secondary">See more</a>
@@ -222,8 +224,8 @@
                 </div>
               </li>
               <li class="item">
-                <div class="wrapper">
-                  <h2 class="fs-secondary-heading fw-bold">KSZW</h2>
+                <div class="offer__wrapper">
+                  <h2 class="fs-tertiary-heading fw-bold">KSZW</h2>
                   <a href="#" class="btn-secondary">See more</a>
                   <p class="desc">
                     We pride ourselves on our attention to detail and commitment
@@ -240,8 +242,8 @@
               </li>
 
               <li class="item">
-                <div class="wrapper">
-                  <h2 class="fs-secondary-heading fw-bold">Doctoral Studies</h2>
+                <div class="offer__wrapper">
+                  <h2 class="fs-tertiary-heading fw-bold">Doctoral Studies</h2>
                   <a href="#" class="btn-secondary">See more</a>
                   <p class="desc">
                     We pride ourselves on our attention to detail and commitment
@@ -257,8 +259,8 @@
                 </div>
               </li>
               <li class="item">
-                <div class="wrapper">
-                  <h2 class="fs-secondary-heading fw-bold">Conferences</h2>
+                <div class="offer__wrapper">
+                  <h2 class="fs-tertiary-heading fw-bold">Conferences</h2>
                   <a href="#" class="btn-secondary">See more</a>
                   <p class="desc">
                     We pride ourselves on our attention to detail and commitment
@@ -275,8 +277,8 @@
               </li>
 
               <li class="item">
-                <div class="wrapper">
-                  <h2 class="fs-secondary-heading fw-bold">Decontamination</h2>
+                <div class="offer__wrapper">
+                  <h2 class="fs-tertiary-heading fw-bold">Decontamination</h2>
                   <a href="#" class="btn-secondary">See more</a>
                   <p class="desc">
                     We pride ourselves on our attention to detail and commitment
@@ -296,58 +298,60 @@
         </div>
       </section>
 
-      <section class="cta">
-        <div class="wrapper">
-          <div class="section-nav">
-            <button class="btn-primary">Announcements</button>
-            <button class="btn-primary">WCKP</button>
-            <button class="btn-primary">Orders</button>
-          </div>
-          <div class="cta__content">
-            <h2 class="fs-primary-heading fw-bold">WCKP</h2>
-            <ul class="tab-info">
-              <li><button class="btn-accent">About Us</button></li>
-              <li><button class="btn-accent">Pricing</button></li>
-              <li><button class="btn-accent">Contact</button></li>
-            </ul>
-            <p class="cta__desc">
-              Postgraduate education in Puławy has existed practically since the
-              establishment of the institute. Initially, trainings for
-              veterinarians were held sporadically in the rooms of individual
-              research units.
-            </p>
-            <a href="#see-more" class="btn-primary btn-heading">See more</a>
-          </div>
-        </div>
-      </section>
-
-      <section class="about-us">
-        <div class="container">
-          <div class="even-columns">
-            <div>
-              <p class="fs-primary-heading fw-bold">About us</p>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi
-                illum, voluptates nesciunt quis quos nam voluptate asperiores
-                perferendis sed animi enim id natus delectus hic.
-              </p>
-              <br />
-              <p>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                Corporis, eligendi? Lorem ipsum dolor sit amet consectetur
-                adipisicing elit. Perspiciatis adipisci fugiat iusto laboriosam
-                assumenda officiis error dolores unde odio repellendus.
-              </p>
+      <div class="section-wrapper">
+        <section class="cta">
+          <div class="cta__wrapper">
+            <div class="section-nav">
+              <button class="btn-primary">Announcements</button>
+              <button class="btn-primary">WCKP</button>
+              <button class="btn-primary">Orders</button>
             </div>
-            <picture
-              ><img src="assets/img/hero-image.png" alt="scientist"
-            /></picture>
+            <div class="cta__content">
+              <h2 class="fs-primary-heading fw-bold">WCKP</h2>
+              <ul class="tab-info">
+                <li><button class="btn-accent">About Us</button></li>
+                <li><button class="btn-accent">Pricing</button></li>
+                <li><button class="btn-accent">Contact</button></li>
+              </ul>
+              <p class="cta__desc">
+                Postgraduate education in Puławy has existed practically since
+                the establishment of the institute. Initially, trainings for
+                veterinarians were held sporadically in the rooms of individual
+                research units.
+              </p>
+              <a href="#see-more" class="btn-primary btn-heading">See more</a>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+        <section class="about-us">
+          <div class="container">
+            <div class="even-columns">
+              <div>
+                <p class="fs-primary-heading fw-bold">About us</p>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Commodi illum, voluptates nesciunt quis quos nam voluptate
+                  asperiores perferendis sed animi enim id natus delectus hic.
+                </p>
+                <br />
+                <p>
+                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                  Corporis, eligendi? Lorem ipsum dolor sit amet consectetur
+                  adipisicing elit. Perspiciatis adipisci fugiat iusto
+                  laboriosam assumenda officiis error dolores unde odio
+                  repellendus.
+                </p>
+              </div>
+              <picture
+                ><img src="assets/img/hero-image.png" alt="scientist"
+              /></picture>
+            </div>
+          </div>
+        </section>
+      </div>
 
       <section class="carousel">
-        <div class="wrapper">
+        <div class="carousel__wrapper">
           <h2 class="fs-primary-heading fw-bold">Information Materials</h2>
           <div class="buttons-wrapper">
             <button class="btn-arrow previous">
@@ -387,7 +391,7 @@
           <ul role="list" class="column-items">
             <a href="#swine-fever">
               <li class="info-item-box">
-                <div class="wrapper">
+                <div class="carousel__wrapper">
                   <img src="assets/img/9.jpg" alt="" />
                   <div class="info__title">
                     <p>African Swine Fever</p>
@@ -398,18 +402,55 @@
 
             <a href="#lyme-disease">
               <li class="info-item-box">
-                <img src="assets/img/65a.jpg" alt="" />
-                <div class="info__title">
-                  <p>Lyme disease</p>
+                <div class="carousel__wrapper">
+                  <img src="assets/img/65a.jpg" alt="" />
+                  <div class="info__title">
+                    <p>Lyme disease</p>
+                  </div>
                 </div>
               </li>
             </a>
 
             <a href="#lyme-disease">
               <li class="info-item-box">
-                <img src="assets/img/65a.jpg" alt="" />
-                <div class="info__title">
-                  <p>Lyme disease</p>
+                <div class="carousel__wrapper">
+                  <img src="assets/img/65a.jpg" alt="" />
+                  <div class="info__title">
+                    <p>Lyme disease</p>
+                  </div>
+                </div>
+              </li>
+            </a>
+
+            <a href="#lyme-disease">
+              <li class="info-item-box">
+                <div class="carousel__wrapper">
+                  <img src="assets/img/65a.jpg" alt="" />
+                  <div class="info__title">
+                    <p>Lyme disease</p>
+                  </div>
+                </div>
+              </li>
+            </a>
+
+            <a href="#lyme-disease">
+              <li class="info-item-box">
+                <div class="carousel__wrapper">
+                  <img src="assets/img/65a.jpg" alt="" />
+                  <div class="info__title">
+                    <p>Lyme disease</p>
+                  </div>
+                </div>
+              </li>
+            </a>
+
+            <a href="#lyme-disease">
+              <li class="info-item-box">
+                <div class="carousel__wrapper">
+                  <img src="assets/img/65a.jpg" alt="" />
+                  <div class="info__title">
+                    <p>Lyme disease</p>
+                  </div>
                 </div>
               </li>
             </a>
@@ -438,7 +479,7 @@
         <div class="header-footer__nav">
           <nav class="footer-nav">
             <ul role="list" aria-label="footer" style="--flow-spacer: 1em">
-              <li><a href="#">Company</a></li>
+              <li class="footer__nav__header"><a href="#">Company</a></li>
               <li class="sub__nav">
                 <ul class="list">
                   <li><a href="#">Home</a></li>
@@ -448,7 +489,7 @@
                 </ul>
               </li>
 
-              <li><a href="#">Services</a></li>
+              <li class="footer__nav__header"><a href="#">Services</a></li>
               <li class="sub__nav">
                 <ul class="list">
                   <li><a href="#">Privacy Policy</a></li>
