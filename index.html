@@ -25,22 +25,49 @@
             <a href="#" aria-label="home">
               <picture>
                 <source srcset="assets/img/logo.svg" />
-                <img src="assets/img/logo.svg" alt="home" height="60" />
+                <img
+                  src="assets/img/logo.svg"
+                  alt="home"
+                  height="60"
+                  class="nav-logo"
+                />
               </picture>
             </a>
             <button
               class="mobile-nav-toggle"
               aria-controls="primary-navigation"
               aria-expanded="false"
+              data-control="hamburger"
             >
               <span class="visually-hidden">Menu</span>
             </button>
             <nav class="primary-navigation" id="primary-navigation">
+              <div class="primary-nav__wrapper">
+                <a href="#" aria-label="home">
+                  <picture>
+                    <source srcset="assets/img/logo.svg" />
+                    <img
+                      src="assets/img/logo.svg"
+                      alt="home"
+                      height="60"
+                      data-inverted="true"
+                    />
+                  </picture>
+                </a>
+                <button
+                  class="mobile-nav-toggle"
+                  aria-controls="primary-navigation"
+                  aria-expanded="false"
+                  data-control="close"
+                >
+                  <span class="visually-hidden">Menu</span>
+                </button>
+              </div>
               <ul class="nav-list" role="list" aria-label="Primary">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Carrers</a></li>
-                <li><a href="#">Pricing</a></li>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#carrers">Carrers</a></li>
+                <li><a href="#pricing">Pricing</a></li>
               </ul>
             </nav>
           </div>
@@ -298,7 +325,7 @@
         </div>
       </section>
 
-      <div class="section-wrapper">
+      <div class="section-wrapper container">
         <section class="cta">
           <div class="cta__wrapper">
             <div class="section-nav">
@@ -350,7 +377,7 @@
         </section>
       </div>
 
-      <section class="carousel">
+      <section class="carousel | container-xl-only">
         <div class="carousel__wrapper">
           <h2 class="fs-primary-heading fw-bold">Information Materials</h2>
           <div class="buttons-wrapper">
@@ -465,7 +492,7 @@
       </section>
     </main>
     <footer class="revert-bg">
-      <div class="container-fluid">
+      <div class="container-fluid container">
         <p class="fs-primary-heading fw-bold">
           Let's talk
           <span>
