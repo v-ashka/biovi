@@ -33,10 +33,10 @@ class Model{
             { id: 2, text: 'Lyme disease', link: '/african-fever', imgSrc: '64a.jpg', },
             { id: 3, text: 'Highly Pathogenic Avian Influenza', link: '/african-fever', imgSrc: '61.jpg', },
             { id: 4, text: 'Information for beekeepers', link: '/african-fever', imgSrc: '9.jpg', },
-            { id: 1, text: 'African Swine Fever', link: '/african-fever', imgSrc: '65a.jpg', },
-            { id: 2, text: 'Lyme disease', link: '/african-fever', imgSrc: '64a.jpg', },
-            { id: 3, text: 'Highly Pathogenic Avian Influenza', link: '/african-fever', imgSrc: '61.jpg', },
-            { id: 4, text: 'Information for beekeepers', link: '/african-fever', imgSrc: '9.jpg', }
+            { id: 5, text: 'African Swine Fever', link: '/african-fever', imgSrc: '65a.jpg', },
+            { id: 6, text: 'Lyme disease', link: '/african-fever', imgSrc: '64a.jpg', },
+            { id: 7, text: 'Highly Pathogenic Avian Influenza', link: '/african-fever', imgSrc: '61.jpg', },
+            { id: 8, text: 'Information for beekeepers', link: '/african-fever', imgSrc: '9.jpg', }
         ];
         this.carouselTitle = 'Information Materials';
     }
@@ -151,7 +151,7 @@ class View{
 
         const carouselItemTitleBox = this.createElement('div', 'info__title');
         const carouselItemTitle = this.createElement('p');
-        carouselItemTitle.textContent = item.text
+        carouselItemTitle.textContent = item.id
             
         
         // append elements
@@ -173,7 +173,8 @@ class View{
             this.widthVal = this.itemList.firstChild.offsetWidth;
             this.widthValTemp = this.widthVal;
             this.nextItem(items.length, this.widthVal);
-            this.previousItem(items.length, this.widthVal)
+            this.previousItem(items.length, this.widthVal);
+            // this.handleBtns(items.length)
             // this.loop(items.length, this.widthVal);
         }
     }
@@ -239,80 +240,59 @@ class View{
         }, 2000);
     };
 
-    nextItem(items, widthElem) {
-        let secTemp = widthElem;
-        let temp = items;
-        this.widthVal = this.itemList.firstChild.offsetWidth;
+    nextItem(items) {
+        let elements = items;
+        let elemWidthTemp = 0;
+
         this.btnRight.addEventListener('click', (e) => {
-            temp--;
-            this.actualTransform = secTemp + 20;
-            this.itemList.style.transform = `translateX(-${this.actualTransform}px)`;
-            if (this.widthVal != this.widthValTemp) {
-                this.actualTransform = 0;
-                this.itemList.style.transform = `translateX(-${this.actualTransform}px)`;
-                secTemp = this.widthVal;
-                temp = this.itemList.children.length;
-                this.widthValTemp = this.widthVal;
-                this.loop(temp, secTemp);
 
-            } else {
-
-                secTemp += this.widthVal + 20;
-
-                if (window.innerWidth > 0 && window.innerWidth < 610) {
-                    if (temp < 1) {
-                        this.actualTransform = 0;
-                        temp = this.itemList.children.length;
-                        this.itemList.style.transform = `translateX(-${this.actualTransform}px)`;
-                        secTemp = this.widthVal;
-                    }
-    
-                }
-                if (window.innerWidth >= 610 && window.innerWidth < 916) {
-                    if (temp < 2) {
-                        this.actualTransform = 0;
-                        temp = this.itemList.children.length;
-                        this.itemList.style.transform = `translateX(-${this.actualTransform}px)`;
-                        secTemp = this.widthVal;
-                    }
-    
-                }
-
-                if (window.innerWidth >= 916 && window.innerWidth < 1200) {
-                    if (temp < 3) {
-                        this.actualTransform = 0;
-                        temp = this.itemList.children.length;
-                        this.itemList.style.transform = `translateX(-${this.actualTransform}px)`;
-                        secTemp = this.widthVal;
-                    }
-    
-                }
-                if (window.innerWidth >= 1200) {
-                    if (temp < 4) {
-                        this.actualTransform = 0;
-                        temp = this.itemList.children.length;
-                        this.itemList.style.transform = `translateX(-${this.actualTransform}px)`;
-                        secTemp = this.widthVal;
-                    }
-    
-                }
+            setTimeout(() => {
+            let elemWidth = this.itemList.firstChild.offsetWidth
+            const gap = 20;
+            
+            elemWidthTemp += elemWidth + gap;            
+            this.itemList.style.transform = `translateX(-${elemWidthTemp}px)`
+            elements--;
+            if (elements < Math.floor(window.innerWidth / elemWidth)) {
+                this.itemList.style.transform = `translateX(0px)`;
+                elements = items;
+                elemWidthTemp = 0;
             }
-            console.log(this.actualTransform)
-        }
-        )
+            }, 100)
+            
+         
+
+        })
     }
 
-     previousItem(items, widthElem) {
-        let secTemp = widthElem;
-        let temp = items;
-        this.widthVal = this.itemList.firstChild.offsetWidth;
+    previousItem(items) {
+        
+        const gap = 20;
+        const elementPerWindow = Math.floor(window.innerWidth / this.itemList.firstChild.offsetWidth)
+        let elements = items;
+        let elemWidthTemp = (this.itemList.firstChild.offsetWidth * (elements - elementPerWindow)) + ((elements - elementPerWindow)* gap); 
+
         this.btnLeft.addEventListener('click', (e) => {
-            console.log(secTemp, temp, this.actualTransform)
-
-            this.itemList.style.transform = `translateX(-${this.actualTransform - secTemp + -20}px)`;
-        }
-        )
+            setTimeout(() => {
+                let elemWidth = this.itemList.firstChild.offsetWidth
+            
+            this.itemList.style.transform = `translateX(-${elemWidthTemp}px)`
+            elemWidthTemp -= elemWidth + gap;            
+            elements--;
+            
+            
+            if (elements < Math.floor(window.innerWidth / elemWidth)) {
+                elements = items;
+                elemWidthTemp = (this.itemList.firstChild.offsetWidth * (elements - elementPerWindow)) + ((elements - elementPerWindow)* gap);
+                this.itemList.style.transform = `translateX(-${elemWidthTemp})`;
+                
+            }
+            }, 100);
+         
+        })
     }
+
+ 
 
 }
 
