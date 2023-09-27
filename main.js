@@ -89,7 +89,7 @@ class View{
         
         this.itemList = this.createElement('ul', 'column-items');
         this.paginationList = this.createElement('ul', 'carousel-pagination');
-        this.container.append(this.itemList);
+        this.container.append(this.itemList, this.paginationList);
         //
         //  carousel__wrapper append
             // btns wrapper
@@ -151,7 +151,7 @@ class View{
 
         const carouselItemTitleBox = this.createElement('div', 'info__title');
         const carouselItemTitle = this.createElement('p');
-        carouselItemTitle.textContent = item.text
+        carouselItemTitle.textContent = item.id 
             
         
         // append elements
@@ -168,6 +168,7 @@ class View{
                         
         // ul.column-items append
         this.itemList.append(anchorItem);
+
         // columns|d-inline-flex append
         })   
             this.widthVal = this.itemList.firstChild.offsetWidth;
@@ -177,26 +178,92 @@ class View{
         }
     }
 
-    changeItem(gap, position, itemsWidth, itemWidth) {
+
+    
+            // if (index == paginationElements) {
+            //         this.paginationList.children[index].firstChild.removeAttribute('data', 'active')    
+            //         index = 0;
+            //         this.paginationList.children[index].firstChild.setAttribute('data', 'active')
+
+            // } else {
+            //     this.paginationList.children[index].firstChild.removeAttribute('data', 'active')
+            //     index++;
+            //     this.paginationList.children[index].firstChild.setAttribute('data', 'active')
+            // }   
+
+
+    changeItem(gap, position, itemsWidth, itemWidth, paginationElements) {
+        let indexPos = 0;
+        console.log('indexPos: ' + indexPos)
         this.btnRight.addEventListener('click', e => {
+            if (indexPos == paginationElements) {
+                this.paginationList.children[indexPos].firstChild.removeAttribute('data', 'active')
+                indexPos = 0;
+                // console.log(`${indexPos} || ${paginationElements}`)
+                this.paginationList.children[indexPos].firstChild.setAttribute('data', 'active')
+                // console.log(`${indexPos} || ${paginationElements}`)
+
+
+                
+            } else {
+                 this.paginationList.children[indexPos].firstChild.removeAttribute('data', 'active')
+            indexPos++;
+            this.paginationList.children[indexPos].firstChild.setAttribute('data', 'active')           
+            }
+
+            // console.log(`${position} > ${itemsWidth} || ${position} || ${indexPos}`)
             position += itemWidth + gap
+            
+
             this.itemList.style.transform = `translateX(-${position}px)`
+            console.log(`${position} > ${itemsWidth} || ${position} || ${indexPos} || ${paginationElements}`)
 
             if (position > itemsWidth) {
-                position = 0;
+                position = 0;   
                 this.itemList.style.transform = `translateX(-${position}px)`
+
             }
         })
         
         this.btnLeft.addEventListener('click', e => {
-            position -= itemWidth + gap
-            this.itemList.style.transform = `translateX(-${position}px)`
+            if (indexPos <= 0) {
+                this.paginationList.children[indexPos].firstChild.removeAttribute('data', 'active')
+                indexPos = paginationElements;
+                // console.log(`${indexPos} || ${paginationElements}`)
+                this.paginationList.children[indexPos].firstChild.setAttribute('data', 'active')
+                // console.log(`${indexPos} || ${paginationElements}`)
+            } else {
+                 this.paginationList.children[indexPos].firstChild.removeAttribute('data', 'active')
+            indexPos--;
+            this.paginationList.children[indexPos].firstChild.setAttribute('data', 'active')           
+            }
 
+
+            // console.log(`${position} > ${itemsWidth} || ${position} || ${indexPos}`)
+            position -= itemWidth + gap
+            // indexPos--;
+            this.itemList.style.transform = `translateX(-${position}px)`
+            console.log(`${position} > ${itemsWidth} || ${position} || ${indexPos} || ${paginationElements}`)
+            
             if (position < 0 ) {
                 position = itemsWidth;
-
+                
                 this.itemList.style.transform = `translateX(-${position}px)`
             }
+        })
+
+        const paginationArray = Array.from(this.paginationList.children);
+        paginationArray.forEach((paginItem, index) => {
+                
+            paginItem.addEventListener('click', e => {
+                paginationArray.forEach(items => {
+                    items.firstChild.removeAttribute('data', 'active')
+                })  
+                
+                paginItem.firstChild.setAttribute('data', 'active')
+                position = index * (itemWidth + gap)
+                this.itemList.style.transform = `translateX(-${position}px)`
+            })
         })
     }
 
@@ -207,8 +274,19 @@ class View{
         let position = 0;
         const itemsWidth = (this.itemList.firstChild.offsetWidth * (items - itemsInRow)) + ((items - itemsInRow) * gap); 
         const itemWidth = (this.itemList.firstChild.offsetWidth)
-        this.changeItem(gap, position, itemsWidth, itemWidth);
+        console.log(itemsInRow, position, itemsWidth, itemWidth)
 
+        // add pagination btns
+        const paginationElements = Math.floor(itemsWidth / itemWidth);
+        console.log(paginationElements)
+        for (let index = 0; index <= paginationElements; index++) {
+            const paginationItem = this.createElement('li');
+            const paginationBtn = this.createElement('button', 'item');
+            paginationItem.append(paginationBtn);
+            this.paginationList.append(paginationItem);
+        }
+        this.paginationList.firstChild.firstChild.setAttribute('data', 'active')
+        this.changeItem(gap, position, itemsWidth, itemWidth, paginationElements);
     }
 
 
