@@ -342,6 +342,7 @@ ul:has([class]){
   background-repeat: no-repeat;
   background-position: center;
   z-index: 9999;
+  transition: .5s all var(--transition-link-1);
 }
 
 

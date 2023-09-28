@@ -39,6 +39,7 @@ class Model{
             { id: 8, text: 'Information for beekeepers', link: '/african-fever', imgSrc: '9.jpg', }
         ];
         this.carouselTitle = 'Information Materials';
+        this.carouselPagination = true;
     }
 
     addItem(itemText, itemLink, itemImg) {
@@ -77,19 +78,45 @@ class View{
         // buttons functional
         this.btnWrapper = this.createElement('div', 'buttons-wrapper');
         // btnRight
-        this.btnRight = this.createElement('button', 'btn-arrow.next');
-        this.btnRight.textContent = '>';
+        this.btnRight = this.createElement('button', 'btn-arrow');
+        this.btnRight.classList.add('next');
+        this.btnRight.innerHTML = `   
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="14"
+                height="11"
+                viewBox="0 0 14 11"
+                fill="none"
+              >
+                <path
+                  d="M9.1 0.793091L8.113 1.81512L11.319 5.14214H0V6.59182H11.319L8.106 9.91885L9.1 10.9409L14 5.86698L9.1 0.793091Z"
+                  fill="white"
+                />
+              </svg>`;
 
-        this.btnLeft = this.createElement('button', 'btn-arrow.previous');
-        this.btnLeft.textContent = '<';
+        this.btnLeft = this.createElement('button', 'btn-arrow');
+        this.btnLeft.classList.add('previous');
+        this.btnLeft.innerHTML = `<svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="14"
+                height="11"
+                viewBox="0 0 14 11"
+                fill="none"
+              >
+                <path
+                  d="M4.9 0.793091L5.887 1.81512L2.681 5.14214H14V6.59182H2.681L5.894 9.91885L4.9 10.9409L0 5.86698L4.9 0.793091Z"
+                  fill="white"
+                />
+              </svg>
+              
+              `;
 
         // container for carousel and carousel pagination
         this.container = this.createElement('div', 'columns');
         this.container.classList.add('d-inline-flex'); 
         
         this.itemList = this.createElement('ul', 'column-items');
-        this.paginationList = this.createElement('ul', 'carousel-pagination');
-        this.container.append(this.itemList, this.paginationList);
+        this.container.append(this.itemList);
         //
         //  carousel__wrapper append
             // btns wrapper
@@ -117,10 +144,15 @@ class View{
         return element;
     }
 
-    displaySlides(items, slideTitle) {
-        console.log(items, slideTitle)
+    displaySlides(items, slideTitle, paginationState) {
+        if (paginationState) {
+                    this.paginationList = this.createElement('ul', 'carousel-pagination');
+                    this.container.append(this.paginationList);
+        }
+
+        console.log(items, slideTitle, 'test', paginationState)
         while (this.itemList.firstChild) {
-      this.itemList.removeChild(this.itemList.firstChild)
+            this.itemList.removeChild(this.itemList.firstChild)
         }
 
 
@@ -132,9 +164,6 @@ class View{
 
             this.btnWrapper.remove();
         } else {
-            
-
-
         // carosuel item
             items.forEach(item => {
         // title and btns wrapper
@@ -151,7 +180,7 @@ class View{
 
         const carouselItemTitleBox = this.createElement('div', 'info__title');
         const carouselItemTitle = this.createElement('p');
-        carouselItemTitle.textContent = item.id 
+        carouselItemTitle.textContent = item.text 
             
         
         // append elements
@@ -179,114 +208,105 @@ class View{
     }
 
 
-    
-            // if (index == paginationElements) {
-            //         this.paginationList.children[index].firstChild.removeAttribute('data', 'active')    
-            //         index = 0;
-            //         this.paginationList.children[index].firstChild.setAttribute('data', 'active')
-
-            // } else {
-            //     this.paginationList.children[index].firstChild.removeAttribute('data', 'active')
-            //     index++;
-            //     this.paginationList.children[index].firstChild.setAttribute('data', 'active')
-            // }   
-
-
     changeItem(gap, position, itemsWidth, itemWidth, paginationElements) {
-        let indexPos = 0;
-        console.log('indexPos: ' + indexPos)
-        this.btnRight.addEventListener('click', e => {
-            if (indexPos == paginationElements) {
-                this.paginationList.children[indexPos].firstChild.removeAttribute('data', 'active')
-                indexPos = 0;
-                // console.log(`${indexPos} || ${paginationElements}`)
-                this.paginationList.children[indexPos].firstChild.setAttribute('data', 'active')
-                // console.log(`${indexPos} || ${paginationElements}`)
-
-
-                
-            } else {
-                 this.paginationList.children[indexPos].firstChild.removeAttribute('data', 'active')
-            indexPos++;
-            this.paginationList.children[indexPos].firstChild.setAttribute('data', 'active')           
-            }
-
-            // console.log(`${position} > ${itemsWidth} || ${position} || ${indexPos}`)
-            position += itemWidth + gap
-            
-
-            this.itemList.style.transform = `translateX(-${position}px)`
-            console.log(`${position} > ${itemsWidth} || ${position} || ${indexPos} || ${paginationElements}`)
-
-            if (position > itemsWidth) {
-                position = 0;   
-                this.itemList.style.transform = `translateX(-${position}px)`
-
-            }
-        })
+        let paginationIndex = undefined
+        if (paginationElements != undefined) paginationIndex = 0;
         
-        this.btnLeft.addEventListener('click', e => {
-            if (indexPos <= 0) {
-                this.paginationList.children[indexPos].firstChild.removeAttribute('data', 'active')
-                indexPos = paginationElements;
-                // console.log(`${indexPos} || ${paginationElements}`)
-                this.paginationList.children[indexPos].firstChild.setAttribute('data', 'active')
-                // console.log(`${indexPos} || ${paginationElements}`)
-            } else {
-                 this.paginationList.children[indexPos].firstChild.removeAttribute('data', 'active')
-            indexPos--;
-            this.paginationList.children[indexPos].firstChild.setAttribute('data', 'active')           
-            }
+   
+                this.btnRight.addEventListener('click', e => {
+                    console.log(`${position} > ${itemsWidth} || ${paginationElements}`)
+                        // console.log(this.carousel.offsetWidth)
+                    if (position >= itemsWidth) {
+                        position = 0;
+                        this.itemList.style.transform = `translateX(-${position}px)`
+                        
+                        // pagination
+                        if (paginationElements) {
+                            this.paginationList.children[paginationIndex].firstChild.removeAttribute('data', 'active')
+                            paginationIndex = 0;
+                            this.paginationList.children[paginationIndex].firstChild.setAttribute('data', 'active')    
+                        }
+                        
+                    } else {
+                        position += itemWidth + gap
+                        this.itemList.style.transform = `translateX(-${position}px)`    
 
+                        if (paginationElements) {
+                            console.log(paginationIndex)
+                            this.paginationList.children[paginationIndex].firstChild.removeAttribute('data', 'active')
+                            paginationIndex++;
+                            this.paginationList.children[paginationIndex].firstChild.setAttribute('data', 'active')        
+                        }
+                    }
+                    
 
-            // console.log(`${position} > ${itemsWidth} || ${position} || ${indexPos}`)
-            position -= itemWidth + gap
-            // indexPos--;
-            this.itemList.style.transform = `translateX(-${position}px)`
-            console.log(`${position} > ${itemsWidth} || ${position} || ${indexPos} || ${paginationElements}`)
-            
-            if (position < 0 ) {
-                position = itemsWidth;
+                })
                 
-                this.itemList.style.transform = `translateX(-${position}px)`
-            }
-        })
+                this.btnLeft.addEventListener('click', e => {
+                    
+                if (position <= 0 ) {
+                    position = itemsWidth;
+                    this.itemList.style.transform = `translateX(-${position}px)`
 
-        const paginationArray = Array.from(this.paginationList.children);
-        paginationArray.forEach((paginItem, index) => {
-                
-            paginItem.addEventListener('click', e => {
-                paginationArray.forEach(items => {
-                    items.firstChild.removeAttribute('data', 'active')
-                })  
-                
-                paginItem.firstChild.setAttribute('data', 'active')
-                position = index * (itemWidth + gap)
+                    // pagination
+                    if (paginationElements) {
+                        this.paginationList.children[paginationIndex].firstChild.removeAttribute('data', 'active')
+                        paginationIndex = paginationElements - 1;
+                        this.paginationList.children[paginationIndex].firstChild.setAttribute('data', 'active')    
+                    }
+                } else {
+                    // console.log(`${position} > ${itemsWidth} || ${paginationElements}`)
+                    position -= itemWidth + gap
+                    this.itemList.style.transform = `translateX(-${position}px)`
+
+                    if (paginationElements) {
+                            this.paginationList.children[paginationIndex].firstChild.removeAttribute('data', 'active')
+                            paginationIndex--;
+                            this.paginationList.children[paginationIndex].firstChild.setAttribute('data', 'active')        
+                    }
+                }
+                    
+                })
+        
+
+        for (let item = 0; item < paginationElements; item++)  
+        {
+            this.paginationList.children[item].addEventListener('click', e => {
+                this.paginationList.children[paginationIndex].firstChild.removeAttribute('data', 'active')
+                    paginationIndex = item;
+                    position = item * (itemWidth + gap)
+                this.paginationList.children[paginationIndex].firstChild.setAttribute('data', 'active')
                 this.itemList.style.transform = `translateX(-${position}px)`
             })
-        })
+        }
+
     }
+          
 
 
     handleBtns(items) {
         const gap = 20;
-        const itemsInRow = Math.floor(window.innerWidth / this.itemList.firstChild.offsetWidth);
+        const itemsInRow = Math.floor(this.carousel.offsetWidth / this.itemList.firstChild.offsetWidth);
         let position = 0;
         const itemsWidth = (this.itemList.firstChild.offsetWidth * (items - itemsInRow)) + ((items - itemsInRow) * gap); 
         const itemWidth = (this.itemList.firstChild.offsetWidth)
-        console.log(itemsInRow, position, itemsWidth, itemWidth)
+        // console.log(itemsInRow, position, itemsWidth, itemWidth)
 
         // add pagination btns
-        const paginationElements = Math.floor(itemsWidth / itemWidth);
-        console.log(paginationElements)
-        for (let index = 0; index <= paginationElements; index++) {
-            const paginationItem = this.createElement('li');
-            const paginationBtn = this.createElement('button', 'item');
-            paginationItem.append(paginationBtn);
-            this.paginationList.append(paginationItem);
-        }
-        this.paginationList.firstChild.firstChild.setAttribute('data', 'active')
-        this.changeItem(gap, position, itemsWidth, itemWidth, paginationElements);
+        if (this.paginationList) {
+            const paginationElements = Math.floor(itemsWidth / itemWidth);
+            console.log(paginationElements, itemsInRow)
+            for (let index = 0; index <= paginationElements; index++) {
+                const paginationItem = this.createElement('li');
+                const paginationBtn = this.createElement('button', 'item');
+                paginationItem.append(paginationBtn);
+                this.paginationList.append(paginationItem);
+            }
+            this.paginationList.firstChild.firstChild.setAttribute('data', 'active')    
+            this.changeItem(gap, position, itemsWidth, itemWidth, paginationElements+1);
+        } else {
+            this.changeItem(gap, position, itemsWidth, itemWidth);
+       }
     }
 
 
@@ -297,14 +317,16 @@ class Controller{
         this.model = model
         this.view = view
 
+        
         // Display initial slides
-        this.onCarouselListChanged(this.model.carouselItems, this.model.carouselTitle);
+        this.onCarouselListChanged(this.model.carouselItems, this.model.carouselTitle, this.model.carouselPagination);
 
         this.model.bindCarouselListChanged(this.onCarouselListChanged);
+        
     }
 
-    onCarouselListChanged = (items, title) => {
-        this.view.displaySlides(items, title)
+    onCarouselListChanged = (items, title, paginationState) => {
+        this.view.displaySlides(items, title, paginationState)
     }
 }
 
