@@ -166,73 +166,73 @@ export class ViewCarousel{
 
         // columns|d-inline-flex append
         })   
-            this.widthVal = this.itemList.firstChild.offsetWidth;
+            this.widthVal = this.itemList.firstChild.clientWidth;
             this.widthValTemp = this.widthVal;
             this.handleBtns(items.length)
             // this.loop(items.length, this.widthVal);
         }
     }
 
+            
+    showNextItem(index, len) {
+        console.log(index, len)
+        if (index === (len - 1) ) return index = 0
+        return index + 1 
+    }
+
+    showPreviousItem(index, len) {
+        if (index === 0) return len - 1
+        return index - 1;
+    }
+
 
     changeItem(gap, position, itemsWidth, itemWidth, paginationElements) {
-        let paginationIndex = undefined
-        if (paginationElements != undefined) paginationIndex = 0;
-                this.btnRight.addEventListener('click', e => {
-                    console.log(`${position} > ${itemsWidth} || ${paginationElements}`)
-                        // console.log(this.carousel.offsetWidth)
-                    if (position >= itemsWidth) {
-                        position = 0;
-                        this.itemList.style.transform = `translateX(-${position}px)`
-                        // pagination
-                        if (paginationElements) {
-                            this.paginationList.children[paginationIndex].firstChild.removeAttribute('data', 'active')
-                            paginationIndex = 0;
-                            this.paginationList.children[paginationIndex].firstChild.setAttribute('data', 'active')    
-                        }
-                    } else {
-                        position += itemWidth + gap
-                        this.itemList.style.transform = `translateX(-${position}px)`    
+        // temp val
+        let i = 0;
 
-                        if (paginationElements) {
-                            // console.log(paginationIndex)
-                            this.paginationList.children[paginationIndex].firstChild.removeAttribute('data', 'active')
-                            paginationIndex++;
-                            this.paginationList.children[paginationIndex].firstChild.setAttribute('data', 'active')        
-                        }
-                    }
-                })
+        // slide to right
+        this.btnRight.addEventListener('click', e => {
+                    // if index === last dot
+                    if (i === (paginationElements - 1)) {
+                        // set transform position to zero
+                        position = 0;
+                    } else {
+                        // otherwise add elem width to position
+                        position += (this.itemList.children[i].offsetWidth + gap)   
+                        
+            }
+            // slide element
+            this.itemList.style.transform = `translateX(-${position}px)`
+            //  change active dot position 
+            this.paginationList.children[i].firstChild.removeAttribute('data', 'active')
+
+            // 
+            i = this.showNextItem(i, paginationElements);        
+            this.paginationList.children[i].firstChild.setAttribute('data', 'active')     
+            })
+            
+        this.btnLeft.addEventListener('click', e => {
+            if (i === 0) {
+                position = itemsWidth - this.itemList.children[i].offsetWidth;
+            } else {
+                position -= (this.itemList.children[i].offsetWidth + gap)
+            }
+            this.itemList.style.transform = `translateX(-${position}px)`
+            this.paginationList.children[i].firstChild.removeAttribute('data', 'active')
+            i = this.showPreviousItem(i, (paginationElements));
+            this.paginationList.children[i].firstChild.setAttribute('data', 'active')   
                 
-                this.btnLeft.addEventListener('click', e => {
-                if (position <= 0 ) {
-                    position = itemsWidth;
-                    this.itemList.style.transform = `translateX(-${position}px)`
-                    // pagination
-                    if (paginationElements) {
-                        this.paginationList.children[paginationIndex].firstChild.removeAttribute('data', 'active')
-                        paginationIndex = paginationElements - 1;
-                        this.paginationList.children[paginationIndex].firstChild.setAttribute('data', 'active')    
-                    }
-                } else {
-                    // console.log(`${position} > ${itemsWidth} || ${paginationElements}`)
-                    position -= itemWidth + gap
-                    this.itemList.style.transform = `translateX(-${position}px)`
-                    if (paginationElements) {
-                            this.paginationList.children[paginationIndex].firstChild.removeAttribute('data', 'active')
-                            paginationIndex--;
-                            this.paginationList.children[paginationIndex].firstChild.setAttribute('data', 'active')        
-                    }
-                }
-                    
-                })
+            })
         
 
         for (let item = 0; item < paginationElements; item++)  
         {
             this.paginationList.children[item].addEventListener('click', e => {
-                this.paginationList.children[paginationIndex].firstChild.removeAttribute('data', 'active')
-                    paginationIndex = item;
+                this.paginationList.children[i].firstChild.removeAttribute('data', 'active')
+                this.paginationList.children[i].firstChild.removeAttribute('data', 'active')
+                    i = item;
                     position = item * (itemWidth + gap)
-                this.paginationList.children[paginationIndex].firstChild.setAttribute('data', 'active')
+                this.paginationList.children[i].firstChild.setAttribute('data', 'active')
                 this.itemList.style.transform = `translateX(-${position}px)`
             })
         }
@@ -242,29 +242,38 @@ export class ViewCarousel{
 
 
     handleBtns(items) {
+        // column gap
         const gap = 20;
-        const itemsInRow = Math.floor(this.carousel.offsetWidth / this.itemList.firstChild.offsetWidth);
+        // items in row (depends on resolution)
+        const itemsInRow = Math.floor(this.carousel.clientWidth / this.itemList.firstChild.clientWidth);
+        // transform position
         let position = 0;
-        const itemsWidth = (this.itemList.firstChild.offsetWidth * (items - itemsInRow)) + ((items - itemsInRow) * gap); 
-        const itemWidth = (this.itemList.firstChild.offsetWidth)
+        // invidual element width 
+        const itemWidth = (this.itemList.firstChild.clientWidth)
+        // 
+        const itemsWidth = ((this.itemList.firstChild.clientWidth + gap) * (items)) - (itemsInRow * (itemWidth + gap)); 
+       
+        //    8 items - 3 items in row = 5 [6 dots]
+        //    8 items - 2 items in row = 6 [7 dots]
+        //  8 - 1 item in row = 7 [8 dots]
+        const dots = items - itemsInRow
 
         // add pagination btns
-
-
         if (this.paginationList) {
-            const paginationElements = Math.floor(itemsWidth / itemWidth);
-            // console.log(this.paginationList.lastChild)
+            const paginationElements = itemsInRow <= 1 ? dots : dots + 1;
+            // until window is resizing, delete old dots
             while (this.paginationList.firstChild) {
                 this.paginationList.removeChild(this.paginationList.firstChild)
             }
-                for (let index = 0; index <= paginationElements; index++) {
+            // create dots
+                for (let index = 0; index < paginationElements; index++) {
                     const paginationItem = this.createElement('li');
                     const paginationBtn = this.createElement('button', 'item');
                     paginationItem.append(paginationBtn);
-                    
+                    // append dots to pagination list
                     this.paginationList.append(paginationItem);
             }
-
+            // set firt dot as active element
             this.paginationList.firstChild.firstChild.setAttribute('data', 'active')    
             this.changeItem(gap, position, itemsWidth, itemWidth, paginationElements);
         } else {
