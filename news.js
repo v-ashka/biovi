@@ -4,6 +4,7 @@ export class ModelNews{
         this.newsItems = data;
         this.newsSectionTitle = 'News and Events';
         this.newsPagination = false;
+        this.imgPath = '../assets/img/'
     }
 
     addItem(itemText, itemLink, itemImg) {
@@ -104,6 +105,7 @@ export class ViewNews{
         this.actualTransform = 0;
     }   
 
+ 
 
     getElement(selector) {
         const element = document.querySelector(selector);
@@ -118,13 +120,13 @@ export class ViewNews{
         return element;
     }
 
-    displaySlides(items, slideTitle, paginationState) {
+    displaySlides(items, slideTitle, paginationState, imgPath) {
         if (paginationState) {
                     this.paginationList = this.createElement('ul', 'carousel-pagination');
                     this.newsListWrapper.append(this.paginationList);
         }
 
-        console.log(items, slideTitle, 'test', paginationState)
+        // console.log(items, slideTitle, 'test', paginationState)
         while (this.itemList.firstChild) {
             this.itemList.removeChild(this.itemList.firstChild)
         }
@@ -142,8 +144,15 @@ export class ViewNews{
         items.forEach(item => {
         
                 // li.box-square
-                const listItem = this.createElement('li');
-                item.imgCover != undefined ? listItem.classList.add('box-rectangle') : listItem.classList.add('box-square')
+            const listItem = this.createElement('li');
+            if (item.imgCover != undefined) {
+                listItem.classList.add('box-rectangle', 'news-bg-img');
+                listItem.style.backgroundImage = "linear-gradient(#e6e6e6d3, #f6f6f6c8),url(\'"+imgPath+item.imgCover+ "\')";
+                listItem.setAttribute('data-news-img', 'first')
+            } else {
+                 listItem.classList.add('box-square')
+            }
+            
                 // h2 title
                 const newsTitle = this.createElement('h2', 'news__title');
                 newsTitle.textContent = item.title;
@@ -169,112 +178,80 @@ export class ViewNews{
         })   
             this.widthVal = this.itemList.firstChild.offsetWidth;
             this.widthValTemp = this.widthVal;
-            this.handleBtns(items.length)
-            // this.loop(items.length, this.widthVal);
+            
+            this.handleBtns(items.length)            // this.loop(items.length, this.widthVal);
         }
     }
+
 
 
     changeItem(gap, position, itemsWidth, itemWidth, paginationElements) {
-        let paginationIndex = undefined
-        if (paginationElements != undefined) paginationIndex = 0;
-                this.btnRight.addEventListener('click', e => {
-                    console.log(`${position} > ${itemsWidth} || ${paginationElements}`)
-                        // console.log(this.carousel.offsetWidth)
-                    if (position >= itemsWidth) {
-                        position = 0;
-                        this.itemList.style.transform = `translateX(-${position}px)`
-                        // pagination
-                        if (paginationElements) {
-                            this.paginationList.children[paginationIndex].firstChild.removeAttribute('data', 'active')
-                            paginationIndex = 0;
-                            this.paginationList.children[paginationIndex].firstChild.setAttribute('data', 'active')    
-                        }
-                    } else {
-                        position += itemWidth + gap
-                        this.itemList.style.transform = `translateX(-${position}px)`    
-
-                        if (paginationElements) {
-                            console.log(paginationIndex)
-                            this.paginationList.children[paginationIndex].firstChild.removeAttribute('data', 'active')
-                            paginationIndex++;
-                            this.paginationList.children[paginationIndex].firstChild.setAttribute('data', 'active')        
-                        }
-                    }
-                })
-                
-                this.btnLeft.addEventListener('click', e => {
-                if (position <= 0 ) {
-                    position = itemsWidth;
-                    this.itemList.style.transform = `translateX(-${position}px)`
-                    // pagination
-                    if (paginationElements) {
-                        this.paginationList.children[paginationIndex].firstChild.removeAttribute('data', 'active')
-                        paginationIndex = paginationElements - 1;
-                        this.paginationList.children[paginationIndex].firstChild.setAttribute('data', 'active')    
-                    }
-                } else {
-                    // console.log(`${position} > ${itemsWidth} || ${paginationElements}`)
-                    position -= itemWidth + gap
-                    this.itemList.style.transform = `translateX(-${position}px)`
-                    if (paginationElements) {
-                            this.paginationList.children[paginationIndex].firstChild.removeAttribute('data', 'active')
-                            paginationIndex--;
-                            this.paginationList.children[paginationIndex].firstChild.setAttribute('data', 'active')        
-                    }
-                }
-                    
-                })
+        let i = 0;
+        let elementsWidth = 0;
+        const items = (this.itemList.children.length / 2);
         
+        
+        this.btnRight.addEventListener('click', e => {
+            if (i === (items - 1)) {
+                position = 0;
+            } else {
+                position += (this.itemList.children[i].offsetWidth + gap)    
+            }
+            this.itemList.style.transform = `translateX(-${position}px)`
+            i = this.showNextItem(i, (items));
 
-        for (let item = 0; item < paginationElements; item++)  
-        {
-            this.paginationList.children[item].addEventListener('click', e => {
-                this.paginationList.children[paginationIndex].firstChild.removeAttribute('data', 'active')
-                    paginationIndex = item;
-                    position = item * (itemWidth + gap)
-                this.paginationList.children[paginationIndex].firstChild.setAttribute('data', 'active')
-                this.itemList.style.transform = `translateX(-${position}px)`
-            })
-        }
-
+            //    console.log(`${position} > ${itemsWidth} || ${i} || ${items} || ${i === (items - 1)}`)
+        })
+                
+        this.btnLeft.addEventListener('click', e => {
+            // console.log('check ', i, elementsWidth)
+            if (i === 0) {
+                elementsWidth = this.calcNews(this.itemList.children, elementsWidth, gap)
+                position = elementsWidth;
+            } else {
+                position -= (this.itemList.children[i].offsetWidth + gap)
+                elementsWidth = 0;
+            }
+            this.itemList.style.transform = `translateX(-${position}px)`
+            i = this.showPreviousItem(i, (items));
+        })
     }
-          
+        
+    showNextItem(index, len) {
+        if (index === (len - 1) ) return index = 0
+        return index + 1 
+    }
+
+    showPreviousItem(index, len) {
+        if (index === 0) return len - 1
+        return index - 1;
+    }
+
+    calcNews(elements, elemWidth, gap) {
+        Array.from(elements).forEach(item => {
+            elemWidth += item.offsetWidth; 
+        })
+        return ((elemWidth/2) - ((elements.length + 2)*gap));
+    }
 
 
     handleBtns(items) {
-        const gap = 20;
+        const gap = 32;
         const itemsInRow = Math.floor(this.news.offsetWidth / this.itemList.firstChild.offsetWidth);
         let position = 0;
         // calc itemsWidth when width is different at each element
         let elementsWidth = 0;
-        let rectangleElementsWidth = 0;
-        console.log(this.itemList.children)
-        // for (let index = 0; index < items; index++) {
-        //     const element = this.itemList.children[index];
-        //     // console.log(element)
-        //     // console.log(element.offsetWidth)
-        //     elementsWidth += element.offsetWidth
-        // }
-        Array.from(this.itemList.children).filter((el) => {
-            if (el.classList == 'box-rectangle') {
-                elementsWidth += (el.offsetWidth * 2)
-                items++;
-            } else {
-                elementsWidth += el.offsetWidth    
-            }
-            
-        })
-        elementsWidth = elementsWidth / 2
+  
         
 
 
         // const itemsWidth = (this.itemList.firstChild.offsetWidth * (items - itemsInRow)) + ((items - itemsInRow) * gap); 
-        const itemsWidth = elementsWidth + (items * gap)
+        const itemsWidth = elementsWidth + gap
 
-        console.log(items, elementsWidth, itemsInRow, (this.itemList.firstChild.offsetWidth * (items - itemsInRow)) + ((items - itemsInRow) * gap))
+        // console.log(items, elementsWidth, itemsInRow, (this.itemList.firstChild.offsetWidth * (items - itemsInRow)) + ((items - itemsInRow) * gap))
         const itemWidth = (this.itemList.firstChild.offsetWidth)
-
+        
+        // console.log(itemWidth, items, elementsWidth, itemsInRow, (this.itemList.firstChild.offsetWidth * (items - itemsInRow)) + ((items - itemsInRow) * gap))
         // console.log(this.itemList.firstChild.offsetWidth, this.container.offsetWidth, itemsInRow, position, itemsWidth, itemWidth)
         // add pagination btns
         if (this.paginationList) {
@@ -300,15 +277,20 @@ export class ControllerNews{
         this.model = model
         this.view = view
 
-        
         // Display initial slides
-        this.onCarouselListChanged(this.model.newsItems, this.model.newsSectionTitle, this.model.newsPagination);
+        this.onCarouselListChanged(this.model.newsItems, this.model.newsSectionTitle, this.model.newsPagination, this.model.imgPath);
 
         this.model.bindCarouselListChanged(this.onCarouselListChanged);
         
     }
 
-    onCarouselListChanged = (items, title, paginationState) => {
-        this.view.displaySlides(items, title, paginationState)
+    onCarouselListChanged = (items, title, paginationState, imgPath) => {
+        this.view.displaySlides(items, title, paginationState, imgPath)
+
+        window.addEventListener('resize', () => {
+            // console.log(window.innerWidth)
+             this.view.displaySlides(items, title, paginationState, imgPath)
+        })
+       
     }
 }
