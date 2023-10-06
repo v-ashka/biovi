@@ -213,7 +213,7 @@ export class ViewCarousel{
             
         this.btnLeft.addEventListener('click', e => {
             if (i === 0) {
-                position = itemsWidth - this.itemList.children[i].offsetWidth;
+                position = itemsWidth
             } else {
                 position -= (this.itemList.children[i].offsetWidth + gap)
             }
@@ -252,15 +252,15 @@ export class ViewCarousel{
         const itemWidth = (this.itemList.firstChild.clientWidth)
         // 
         const itemsWidth = ((this.itemList.firstChild.clientWidth + gap) * (items)) - (itemsInRow * (itemWidth + gap)); 
-       
+        
         //    8 items - 3 items in row = 5 [6 dots]
         //    8 items - 2 items in row = 6 [7 dots]
         //  8 - 1 item in row = 7 [8 dots]
         const dots = items - itemsInRow
-
+        console.log(dots, items, itemsInRow)
         // add pagination btns
         if (this.paginationList) {
-            const paginationElements = itemsInRow <= 1 ? dots : dots + 1;
+            const paginationElements = dots + 1;
             // until window is resizing, delete old dots
             while (this.paginationList.firstChild) {
                 this.paginationList.removeChild(this.paginationList.firstChild)
