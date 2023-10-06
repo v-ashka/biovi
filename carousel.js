@@ -175,25 +175,35 @@ export class ViewCarousel{
 
             
     showNextItem(index, len) {
-        console.log(index, len)
-        if (index === (len - 1) ) return index = 0
+        // console.log(index, len)
+        if (index >= len ) return index = 0
         return index + 1 
     }
 
     showPreviousItem(index, len) {
-        if (index === 0) return len - 1
+        if (index === 0) return len
         return index - 1;
     }
 
+    clearPagination(paginationElements) {
+       for (let index = 0; index < paginationElements; index++) {
+           this.paginationList.children[index] != undefined ? this.paginationList.children[index].firstChild.removeAttribute('data', 'active') : null;
+        
+        }
 
-    changeItem(gap, position, itemsWidth, itemWidth, paginationElements) {
+    }
+
+    changeItem(gap, position, itemsWidth, itemWidth, paginationElements, actualElement) {
         // temp val
-        let i = 0;
-
+        paginationElements = paginationElements - 1;
+        let i = actualElement;
+        // console.log(paginationElements)
         // slide to right
+       
         this.btnRight.addEventListener('click', e => {
+            this.clearPagination(paginationElements)
                     // if index === last dot
-                    if (i === (paginationElements - 1)) {
+                    if (i === (paginationElements)) {
                         // set transform position to zero
                         position = 0;
                     } else {
@@ -204,28 +214,29 @@ export class ViewCarousel{
             // slide element
             this.itemList.style.transform = `translateX(-${position}px)`
             //  change active dot position 
-            this.paginationList.children[i].firstChild.removeAttribute('data', 'active')
-
-            // 
-            i = this.showNextItem(i, paginationElements);        
-            this.paginationList.children[i].firstChild.setAttribute('data', 'active')     
+            console.log(i, paginationElements)
+            this.paginationList.children[i] != undefined ? this.paginationList.children[i].firstChild.removeAttribute('data', 'active') : null;
+            i = this.showNextItem(i, paginationElements );        
+            this.paginationList.children[i] != undefined ? this.paginationList.children[i].firstChild.setAttribute('data', 'active') : null;
             })
             
         this.btnLeft.addEventListener('click', e => {
+            this.clearPagination(paginationElements)
             if (i === 0) {
                 position = itemsWidth
             } else {
                 position -= (this.itemList.children[i].offsetWidth + gap)
             }
             this.itemList.style.transform = `translateX(-${position}px)`
-            this.paginationList.children[i].firstChild.removeAttribute('data', 'active')
-            i = this.showPreviousItem(i, (paginationElements));
-            this.paginationList.children[i].firstChild.setAttribute('data', 'active')   
+            console.log(i)
+             this.paginationList.children[i] != undefined ? this.paginationList.children[i].firstChild.removeAttribute('data', 'active') : null
+                i = this.showPreviousItem(i, (paginationElements));
+              this.paginationList.children[i] != undefined ? this.paginationList.children[i].firstChild.setAttribute('data', 'active')  : null
                 
             })
         
 
-        for (let item = 0; item < paginationElements; item++)  
+        for (let item = 0; item <= paginationElements; item++)  
         {
             this.paginationList.children[item].addEventListener('click', e => {
                 this.paginationList.children[i].firstChild.removeAttribute('data', 'active')
@@ -242,6 +253,28 @@ export class ViewCarousel{
 
 
     handleBtns(items) {
+        var ro = new ResizeObserver(entries => {
+            // console.log(entries)
+            for (let entry of entries) {
+        
+        // const cr = entry.contentRect;
+        // console.log('Element:', entry.target);
+        // console.log(`Element size: ${cr.width}px x ${cr.height}px`);
+                // console.log(`Element padding: ${cr.top}px ; ${cr.left}px`);
+        const newWidth = entry.contentBoxSize.width;
+        entry.target.style.width = newWidth + 'px';        
+                actualElement = 0;
+                itemsWidth = 0;
+    }
+    });
+
+    // Observe one or multiple elements
+    // ro.observe(this.itemList);
+    // ro.observe(this.itemList.firstChild);
+        ro.observe(this.carousel);
+        
+
+        let actualElement = 0;
         // column gap
         const gap = 20;
         // items in row (depends on resolution)
@@ -251,13 +284,13 @@ export class ViewCarousel{
         // invidual element width 
         const itemWidth = (this.itemList.firstChild.clientWidth)
         // 
-        const itemsWidth = ((this.itemList.firstChild.clientWidth + gap) * (items)) - (itemsInRow * (itemWidth + gap)); 
-        
+        let itemsWidth = ((this.itemList.firstChild.clientWidth + gap) * (items)) - (itemsInRow * (itemWidth + gap)); 
+    
         //    8 items - 3 items in row = 5 [6 dots]
         //    8 items - 2 items in row = 6 [7 dots]
         //  8 - 1 item in row = 7 [8 dots]
         const dots = items - itemsInRow
-        console.log(dots, items, itemsInRow)
+        // console.log(dots, items, itemsInRow)
         // add pagination btns
         if (this.paginationList) {
             const paginationElements = dots + 1;
@@ -275,7 +308,7 @@ export class ViewCarousel{
             }
             // set firt dot as active element
             this.paginationList.firstChild.firstChild.setAttribute('data', 'active')    
-            this.changeItem(gap, position, itemsWidth, itemWidth, paginationElements);
+            this.changeItem(gap, position, itemsWidth, itemWidth, paginationElements, actualElement);
         } else {
             this.changeItem(gap, position, itemsWidth, itemWidth);
        }
